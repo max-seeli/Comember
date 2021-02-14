@@ -6,5 +6,6 @@
     <item type="id" name="text_view_app_name"/>
     <item name="button_play" type="id" />
     <item name="button_help" type="id" />
+    <item name="text_view_highscore" type="id" />
 
 </resources>

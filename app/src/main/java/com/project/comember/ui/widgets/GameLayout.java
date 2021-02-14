@@ -18,7 +18,6 @@ public class GameLayout extends ViewGroup {
 
     public GameLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
-        //TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.GameLayout, 0, 0);
     }
 
     public GameLayout(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -49,7 +48,7 @@ public class GameLayout extends ViewGroup {
         final int topPos = getPaddingTop();
         final int bottomPos = bottom - top - getPaddingBottom();
 
-        for (int i = 0; i < MAX_CHILD_COUNT; i++) {
+        for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
             child.layout(leftPos, topPos, rightPos / 2, bottomPos / 2);
             child.setPivotX((float) rightPos / 2);

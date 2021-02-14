@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main Fragment -->
+    <item type="id" name="linear_layout_top_parent"/>
+
+    <item type="id" name="text_view_app_name"/>
+    <item name="button_play" type="id" />
+    <item name="button_help" type="id" />
+
+</resources>

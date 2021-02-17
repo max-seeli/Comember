@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 public class GameLayout extends ViewGroup {
 
-    private static final int MAX_CHILD_COUNT = 4;
+    private int blockSize;
 
     public GameLayout(Context context) {
         this(context, null);
@@ -36,7 +36,7 @@ public class GameLayout extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int blockSize = Integer.min(MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.getSize(heightMeasureSpec));
+        blockSize = Integer.min(MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.getSize(heightMeasureSpec));
 
         setMeasuredDimension(blockSize, blockSize);
     }
@@ -57,5 +57,16 @@ public class GameLayout extends ViewGroup {
         }
     }
 
+    public GameButton[] getGameButtons() {
+        int childCount = getChildCount();
+
+        GameButton[] gameButtons = new GameButton[childCount];
+
+        for (int i = 0; i < childCount; i++) {
+            gameButtons[i] = (GameButton) getChildAt(i);
+        }
+
+        return gameButtons;
+    }
 
 }

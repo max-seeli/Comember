@@ -7,9 +7,16 @@
     <color name="background_contrast">#474747</color>
 
     <color name="main_red">#eb6161</color>
+    <color name="main_red_highlight">#D63C3C</color>
+
     <color name="main_blue">#6198da</color>
-    <color name="main_green">#7de179</color>
+    <color name="main_blue_highlight">#3D7AC3</color>
+
     <color name="main_yellow">#e9e86a</color>
+    <color name="main_yellow_highlight">#C1C035</color>
+
+    <color name="main_green">#7de179</color>
+    <color name="main_green_highlight">#4FC34B</color>
 
     <color name="black">#000000</color>
     <color name="error">#ff0000</color>

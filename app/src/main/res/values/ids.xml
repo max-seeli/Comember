@@ -6,6 +6,7 @@
     <item type="id" name="text_view_app_name"/>
     <item name="button_play" type="id" />
     <item name="button_help" type="id" />
-    <item name="text_view_highscore" type="id" />
+    <item name="game_score_counter" type="id" />
+    <item name="game_button_layout" type="id" />
 
 </resources>

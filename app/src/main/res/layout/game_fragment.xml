@@ -9,39 +9,50 @@
     tools:context=".ui.GameFragment">
 
     <com.project.comember.ui.widgets.GameScoreCounter
+        android:id="@id/game_score_counter"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
         style="@style/highscore_text"/>
 
-    <com.project.comember.ui.widgets.GameLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:layout_margin="45dp"
-        android:layout_gravity="bottom">
+        android:paddingHorizontal="40dp">
 
-        <com.project.comember.ui.widgets.GameButton
+        <com.project.comember.ui.widgets.GameLayout
+            android:id="@id/game_button_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            custom:color="@color/main_red"/>
+            android:layout_gravity="center">
 
-        <com.project.comember.ui.widgets.GameButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            custom:color="@color/main_blue"/>
+            <com.project.comember.ui.widgets.GameButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                custom:color="@color/main_red"
+                custom:highlightColor="@color/main_red_highlight"/>
 
-        <com.project.comember.ui.widgets.GameButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            custom:color="@color/main_yellow"/>
+            <com.project.comember.ui.widgets.GameButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                custom:color="@color/main_blue"
+                custom:highlightColor="@color/main_blue_highlight"/>
 
-        <com.project.comember.ui.widgets.GameButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            custom:color="@color/main_green"/>
+            <com.project.comember.ui.widgets.GameButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                custom:color="@color/main_yellow"
+                custom:highlightColor="@color/main_yellow_highlight"/>
 
-    </com.project.comember.ui.widgets.GameLayout>
+            <com.project.comember.ui.widgets.GameButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                custom:color="@color/main_green"
+                custom:highlightColor="@color/main_green_highlight"/>
+
+        </com.project.comember.ui.widgets.GameLayout>
+    </FrameLayout>
 
 </LinearLayout>

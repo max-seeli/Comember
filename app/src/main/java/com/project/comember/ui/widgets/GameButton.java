@@ -3,9 +3,9 @@ package com.project.comember.ui.widgets;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import com.project.comember.R;
 
 public class GameButton extends View {
+
+    Paint mCircleColor;
 
     Paint mMainColor;
     Paint mHighlightColor;
@@ -37,6 +39,8 @@ public class GameButton extends View {
         mHighlightColor = new Paint(Paint.ANTI_ALIAS_FLAG);
         mBorderColor = new Paint(Paint.ANTI_ALIAS_FLAG);
 
+        mCircleColor = mMainColor;
+
         TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.GameButton, defStyleAttr, defStyleRes);
 
         try {
@@ -50,6 +54,27 @@ public class GameButton extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawCircle(getRight(), getBottom(), getWidth(), mMainColor);
+        Log.d("Paint me like one of your french girls", "onDraw: ");
+        canvas.drawCircle(getRight(), getBottom(), getWidth(), mCircleColor);
+    }
+
+    public void highlight() {
+        mCircleColor = mHighlightColor;
+        invalidate();
+//        Thread t = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Log.d("Run", "run: ");
+//                    Thread.sleep(5000);
+//                    Log.d("Run", "run: gute");
+//                    mCircleColor = mMainColor;
+//                } catch (InterruptedException e) {
+//                    Log.d("Run", "run: salz");
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//        t.run();
     }
 }

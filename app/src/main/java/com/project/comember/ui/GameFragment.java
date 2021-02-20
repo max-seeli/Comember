@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.project.comember.R;
+import com.project.comember.game.GameColor;
 import com.project.comember.ui.widgets.GameButton;
 import com.project.comember.ui.widgets.GameLayout;
 import com.project.comember.ui.widgets.GameScoreCounter;
@@ -39,14 +40,14 @@ public class GameFragment extends Fragment {
         GameLayout gameLayout = view.findViewById(R.id.game_button_layout);
         gameButtons = gameLayout.getGameButtons();
 
-        for (int i = 0; i < 4; i++)
-        gameButtons[i].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((GameButton) v).highlight();
-            }
-        });
+        for (int i = 0; i < 4; i++) {
+            gameButtons[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((GameButton) v).highlight();
+                }
+            });
+            gameButtons[i].setGameColor(GameColor.valueOf(i));
+        }
     }
-
-
 }

@@ -31,25 +31,25 @@
             <com.project.comember.ui.widgets.GameButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                custom:color="@color/main_red"
+                custom:mainColor="@color/main_red"
                 custom:highlightColor="@color/main_red_highlight"/>
 
             <com.project.comember.ui.widgets.GameButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                custom:color="@color/main_blue"
+                custom:mainColor="@color/main_blue"
                 custom:highlightColor="@color/main_blue_highlight"/>
 
             <com.project.comember.ui.widgets.GameButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                custom:color="@color/main_yellow"
+                custom:mainColor="@color/main_yellow"
                 custom:highlightColor="@color/main_yellow_highlight"/>
 
             <com.project.comember.ui.widgets.GameButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                custom:color="@color/main_green"
+                custom:mainColor="@color/main_green"
                 custom:highlightColor="@color/main_green_highlight"/>
 
         </com.project.comember.ui.widgets.GameLayout>

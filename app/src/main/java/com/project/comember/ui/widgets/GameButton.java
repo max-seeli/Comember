@@ -5,20 +5,27 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 
 import com.project.comember.R;
+import com.project.comember.ThreadExecutor;
+import com.project.comember.game.GameColor;
+
+import java.util.concurrent.Executor;
 
 public class GameButton extends View {
 
-    Paint mCircleColor;
+    private long HIGHLIGHT_STANDARD_MILLIS = 650;
 
-    Paint mMainColor;
-    Paint mHighlightColor;
-    Paint mBorderColor;
+    private GameColor mGameColor;
+
+    private Paint mCircleColor;
+
+    private Paint mMainColor;
+    private Paint mHighlightColor;
+    private Paint mBorderColor;
 
     public GameButton(Context context) {
         this(context, null);
@@ -44,7 +51,8 @@ public class GameButton extends View {
         TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.GameButton, defStyleAttr, defStyleRes);
 
         try {
-            mMainColor.setColor(attributes.getColor(R.styleable.GameButton_color, 0));
+
+            mMainColor.setColor(attributes.getColor(R.styleable.GameButton_mainColor, 0));
             mHighlightColor.setColor(attributes.getColor(R.styleable.GameButton_highlightColor, 0));
             mBorderColor.setColor(attributes.getColor(R.styleable.GameButton_borderColor, 0));
         } finally {
@@ -54,27 +62,33 @@ public class GameButton extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.d("Paint me like one of your french girls", "onDraw: ");
         canvas.drawCircle(getRight(), getBottom(), getWidth(), mCircleColor);
     }
 
     public void highlight() {
-        mCircleColor = mHighlightColor;
+        Executor ex = ThreadExecutor.getExecutor(mGameColor.getValue());
+
+        ex.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    changeActiveColor(mHighlightColor);
+                    Thread.sleep(HIGHLIGHT_STANDARD_MILLIS);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    changeActiveColor(mMainColor);
+                }
+            }
+        });
+    }
+
+    private void changeActiveColor(Paint color) {
+        mCircleColor = color;
         invalidate();
-//        Thread t = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    Log.d("Run", "run: ");
-//                    Thread.sleep(5000);
-//                    Log.d("Run", "run: gute");
-//                    mCircleColor = mMainColor;
-//                } catch (InterruptedException e) {
-//                    Log.d("Run", "run: salz");
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//        t.run();
+    }
+
+    public void setGameColor(GameColor gameColor) {
+        this.mGameColor = gameColor;
     }
 }

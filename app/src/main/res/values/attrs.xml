@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="GameButton">
-        <attr name="color" format="color"/>
+        <attr name="mainColor" format="color"/>
         <attr name="highlightColor" format="color"/>
         <attr name="borderColor" format="color"/>
     </declare-styleable>

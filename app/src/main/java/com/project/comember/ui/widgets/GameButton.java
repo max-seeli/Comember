@@ -17,7 +17,7 @@ import java.util.concurrent.Executor;
 
 public class GameButton extends View {
 
-    private long HIGHLIGHT_STANDARD_MILLIS = 650;
+    private static final long HIGHLIGHT_STANDARD_MILLIS = 650;
 
     private GameColor mGameColor;
 
@@ -66,7 +66,7 @@ public class GameButton extends View {
     }
 
     public void highlight() {
-        Executor ex = ThreadExecutor.getExecutor(mGameColor.getValue());
+        Executor ex = ThreadExecutor.getExecutor();
 
         ex.execute(new Runnable() {
             @Override

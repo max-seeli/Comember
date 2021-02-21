@@ -58,12 +58,21 @@ public class GameButton extends View {
         } finally {
             attributes.recycle();
         }
+
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                highlight();
+            }
+        });
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawCircle(getRight(), getBottom(), getWidth(), mCircleColor);
     }
+
+
 
     public void highlight() {
         Executor ex = ThreadExecutor.getExecutor();
@@ -91,4 +100,6 @@ public class GameButton extends View {
     public void setGameColor(GameColor gameColor) {
         this.mGameColor = gameColor;
     }
+
+
 }

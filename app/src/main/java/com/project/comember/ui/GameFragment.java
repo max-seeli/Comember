@@ -41,12 +41,6 @@ public class GameFragment extends Fragment {
         gameButtons = gameLayout.getGameButtons();
 
         for (int i = 0; i < 4; i++) {
-            gameButtons[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ((GameButton) v).highlight();
-                }
-            });
             gameButtons[i].setGameColor(GameColor.valueOf(i));
         }
     }

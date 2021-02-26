@@ -5,19 +5,20 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 
 import com.project.comember.R;
-import com.project.comember.ThreadExecutor;
+import com.project.comember.SequentialExecutor;
 import com.project.comember.game.GameColor;
 
 import java.util.concurrent.Executor;
 
 public class GameButton extends View {
 
-    private static final long HIGHLIGHT_STANDARD_MILLIS = 650;
+    private static final int HIGHLIGHT_STANDARD_MILLIS = 650;
 
     private GameColor mGameColor;
 
@@ -59,10 +60,19 @@ public class GameButton extends View {
             attributes.recycle();
         }
 
-        setOnClickListener(new OnClickListener() {
+        setOnTouchListener(new OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                highlight();
+            public boolean onTouch(View v, MotionEvent event) {
+                switch(event.getActionMasked()) {
+                    case MotionEvent.ACTION_DOWN:
+                        highlight();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        unhighlight();
+                        break;
+                }
+
+                return true;
             }
         });
     }
@@ -73,24 +83,32 @@ public class GameButton extends View {
     }
 
 
-
     public void highlight() {
-        Executor ex = ThreadExecutor.getExecutor();
-
-        ex.execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    changeActiveColor(mHighlightColor);
-                    Thread.sleep(HIGHLIGHT_STANDARD_MILLIS);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } finally {
-                    changeActiveColor(mMainColor);
-                }
-            }
-        });
+        changeActiveColor(mHighlightColor);
     }
+
+    public void unhighlight() {
+        changeActiveColor(mMainColor);
+    }
+
+
+//    public void highlight(int highlightMillis) {
+//        Executor ex = SequentialExecutor.getExecutor();
+//
+//        ex.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    changeActiveColor(mHighlightColor);
+//                    Thread.sleep(highlightMillis);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                } finally {
+//                    changeActiveColor(mMainColor);
+//                }
+//            }
+//        });
+//    }
 
     private void changeActiveColor(Paint color) {
         mCircleColor = color;

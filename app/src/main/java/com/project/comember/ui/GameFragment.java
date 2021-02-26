@@ -13,11 +13,18 @@ import android.view.ViewGroup;
 
 import com.project.comember.R;
 import com.project.comember.game.GameColor;
+import com.project.comember.game.GameEngine;
 import com.project.comember.ui.widgets.GameButton;
 import com.project.comember.ui.widgets.GameLayout;
 import com.project.comember.ui.widgets.GameScoreCounter;
 
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class GameFragment extends Fragment {
+
+    private GameEngine gameEngine;
 
     private GameScoreCounter gameScoreCounter;
     private GameButton[] gameButtons;
@@ -42,6 +49,44 @@ public class GameFragment extends Fragment {
 
         for (int i = 0; i < 4; i++) {
             gameButtons[i].setGameColor(GameColor.valueOf(i));
+        }
+        gameEngine = new GameEngine(this);
+
+        gameEngine.start();
+    }
+
+    public void highlightColorSequence(List<GameColor> gameColorSequence, int highlightMillis) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+
+        for(GameColor gameColor : gameColorSequence) {
+            executor.execute(new HighlightButtonRunnable(
+                    gameButtons[gameColor.getValue()],
+                    highlightMillis
+            ));
+        }
+    }
+
+
+    private class HighlightButtonRunnable implements Runnable {
+
+        private GameButton mGameButton;
+        private int mHighlightMillis;
+
+        HighlightButtonRunnable(GameButton gameButton, int highlightMillis) {
+            mGameButton = gameButton;
+            mHighlightMillis = highlightMillis;
+        }
+
+        @Override
+        public void run() {
+            try {
+                mGameButton.highlight();
+                Thread.sleep(mHighlightMillis);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            } finally {
+                mGameButton.unhighlight();
+            }
         }
     }
 }

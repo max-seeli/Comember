@@ -3,6 +3,7 @@ package com.project.comember.ui.widgets;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -10,7 +11,7 @@ import android.view.ViewGroup;
 
 public class GameLayout extends ViewGroup {
 
-    private int blockSize;
+    private boolean mTouchable;
 
     public GameLayout(Context context) {
         this(context, null);
@@ -36,7 +37,7 @@ public class GameLayout extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        blockSize = Integer.min(MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.getSize(heightMeasureSpec));
+        int blockSize = Integer.min(MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.getSize(heightMeasureSpec));
 
         setMeasuredDimension(blockSize, blockSize);
     }
@@ -57,6 +58,11 @@ public class GameLayout extends ViewGroup {
         }
     }
 
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return !mTouchable;
+    }
+
     public GameButton[] getGameButtons() {
         int childCount = getChildCount();
 
@@ -69,4 +75,7 @@ public class GameLayout extends ViewGroup {
         return gameButtons;
     }
 
+    public void setTouchable(boolean touchable) {
+        this.mTouchable = touchable;
+    }
 }

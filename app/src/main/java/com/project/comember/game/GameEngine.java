@@ -1,5 +1,7 @@
 package com.project.comember.game;
 
+import android.util.Log;
+
 import com.project.comember.ui.GameFragment;
 
 import java.util.ArrayList;
@@ -7,7 +9,8 @@ import java.util.Random;
 
 public class GameEngine {
 
-    private int STANDARD_HIGHLIGHT_TIME = 400;
+    private int STANDARD_HIGHLIGHT_TIME = 600;
+    private int STANDARD_HIGHLIGHT_PAUSE_TIME = 200;
 
     private GameFragment mGameController;
     private GameStatus mGameStatus;
@@ -25,19 +28,15 @@ public class GameEngine {
     }
 
     public void startNextRound() {
-        GameColor newColor = getRandomColor();
-        mColorList.add(newColor);
-        mGameController.highlightColorSequence(mColorList, STANDARD_HIGHLIGHT_TIME);
+        for (int i = 0; i < 100; i++) {
+            GameColor newColor = GameColor.getRandomColor();
+            mColorList.add(newColor);
+        }
+        mGameController.highlightColorSequence(mColorList, STANDARD_HIGHLIGHT_TIME, STANDARD_HIGHLIGHT_PAUSE_TIME);
     }
 
-    private GameColor getRandomColor() {
-        //inclusive values
-        int max = 3;
-        int min = 0;
-
-        Random r = new Random();
-        int randomInt = r.nextInt((max - min) + 1) + min;
-        return GameColor.valueOf(randomInt);
+    public void highlightingFinished() {
+        Log.d("Done", "highlightingFinished: Donenenene");
     }
 
     public void colorClicked() {

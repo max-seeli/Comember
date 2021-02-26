@@ -2,6 +2,7 @@ package com.project.comember.game;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public enum GameColor {
     INVALID(-1),
@@ -25,6 +26,16 @@ public enum GameColor {
 
     public static GameColor valueOf(int colorType) {
         return (GameColor)map.get(colorType);
+    }
+
+    public static GameColor getRandomColor() {
+        //inclusive values
+        int max = 3;
+        int min = 0;
+
+        Random r = new Random();
+        int randomInt = r.nextInt((max - min) + 1) + min;
+        return valueOf(randomInt);
     }
 
     public int getValue() {

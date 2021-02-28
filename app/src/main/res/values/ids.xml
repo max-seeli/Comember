@@ -8,5 +8,8 @@
     <item name="button_help" type="id" />
     <item name="game_score_counter" type="id" />
     <item name="game_button_layout" type="id" />
+    <item name="button_play_again" type="id" />
+    <item name="button_main_menu" type="id" />
+    <item name="text_view_game_score_counter" type="id" />
 
 </resources>

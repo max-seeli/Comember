@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.project.comember.FutureCallback;
 import com.project.comember.R;
@@ -46,23 +47,32 @@ public class GameFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        gameScoreCounter = view.findViewById(R.id.game_score_counter);
 
         gameLayout = view.findViewById(R.id.game_button_layout);
+        gameScoreCounter = view.findViewById(R.id.game_score_counter);
         gameButtons = gameLayout.getGameButtons();
 
-        setClickable(false);
+        gameEngine = new GameEngine(this);
 
         for (int i = 0; i < 4; i++) {
             gameButtons[i].setGameColor(GameColor.valueOf(i));
+
+            gameButtons[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    GameButton gb = (GameButton) v;
+                    gameEngine.checkColorClicked(gb.getGameColor());
+                }
+            });
         }
-        gameEngine = new GameEngine(this);
+
 
         gameEngine.start();
     }
 
     public void highlightColorSequence(List<GameColor> gameColorSequence, int highlightMillis, int highlightPauseMillis) {
 
+        setClickable(false);
 
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Future<?> highlightFuture = null;
@@ -77,9 +87,20 @@ public class GameFragment extends Fragment {
         new FutureCallback(highlightFuture) {
             @Override
             public void futureFinished() {
+                setClickable(true);
                 gameEngine.highlightingFinished();
             }
         };
+    }
+
+    public void incrementGameScore() {
+        gameScoreCounter.increment();
+    }
+
+    public void gameLost(int gameScore) {
+        GameFragmentDirections.GameFragmentToGameOverFragment action = GameFragmentDirections.gameFragmentToGameOverFragment();
+        action.setGameScore(gameScore);
+        Navigation.findNavController(getView()).navigate(action);
     }
 
     private void setClickable(boolean clickable) {

@@ -24,18 +24,14 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.main_fragment, container, false);
+        return inflater.inflate(R.layout.main_fragment, container, false);
+    }
 
-        Button playButton = layout.findViewById(R.id.button_play);
-        Button helpButton = layout.findViewById(R.id.button_help);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Button playButton = view.findViewById(R.id.button_play);
+        Button helpButton = view.findViewById(R.id.button_help);
 
-        playButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(layout).navigate(R.id.mainFragment_to_gameFragment);
-            }
-        });
-
-        return layout;
+        playButton.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.mainFragment_to_gameFragment));
     }
 }

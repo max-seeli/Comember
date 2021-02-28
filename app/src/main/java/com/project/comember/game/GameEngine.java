@@ -14,7 +14,9 @@ public class GameEngine {
 
     private GameFragment mGameController;
     private GameStatus mGameStatus;
+    private int mGameScore;
 
+    private int checkColorIndex = 0;
     private ArrayList<GameColor> mColorList = new ArrayList<>();
 
 
@@ -28,23 +30,44 @@ public class GameEngine {
     }
 
     public void startNextRound() {
-        for (int i = 0; i < 100; i++) {
-            GameColor newColor = GameColor.getRandomColor();
-            mColorList.add(newColor);
-        }
+        checkColorIndex = 0;
+        GameColor newColor = GameColor.getRandomColor();
+        mColorList.add(newColor);
+
+        this.mGameStatus = GameStatus.HIGHLIGHTING;
         mGameController.highlightColorSequence(mColorList, STANDARD_HIGHLIGHT_TIME, STANDARD_HIGHLIGHT_PAUSE_TIME);
     }
 
     public void highlightingFinished() {
-        Log.d("Done", "highlightingFinished: Donenenene");
+        this.mGameStatus = GameStatus.PLAYING;
     }
 
-    public void colorClicked() {
+    public void checkColorClicked(GameColor clickedColor) {
+        if (mGameStatus != GameStatus.PLAYING)
+            return;
+
+        if (mColorList.get(checkColorIndex) == clickedColor) {
+            checkColorIndex++;
+        } else {
+            roundLost();
+        }
+
+        if (checkColorIndex == mColorList.size()) {
+            roundWon();
+        }
+    }
+
+    public void roundWon() {
+        mGameScore++;
+        mGameController.incrementGameScore();
+        startNextRound();
+    }
+
+    public void roundLost() {
+        mGameController.gameLost(mGameScore);
     }
 
     public GameStatus getGameStatus() {
         return mGameStatus;
     }
-
-
 }

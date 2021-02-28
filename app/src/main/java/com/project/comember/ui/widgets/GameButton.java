@@ -11,14 +11,9 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import com.project.comember.R;
-import com.project.comember.SequentialExecutor;
 import com.project.comember.game.GameColor;
 
-import java.util.concurrent.Executor;
-
 public class GameButton extends View {
-
-    private static final int HIGHLIGHT_STANDARD_MILLIS = 650;
 
     private GameColor mGameColor;
 
@@ -72,7 +67,7 @@ public class GameButton extends View {
                         break;
                 }
 
-                return true;
+                return false;
             }
         });
     }
@@ -91,25 +86,6 @@ public class GameButton extends View {
         changeActiveColor(mMainColor);
     }
 
-
-//    public void highlight(int highlightMillis) {
-//        Executor ex = SequentialExecutor.getExecutor();
-//
-//        ex.execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    changeActiveColor(mHighlightColor);
-//                    Thread.sleep(highlightMillis);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                } finally {
-//                    changeActiveColor(mMainColor);
-//                }
-//            }
-//        });
-//    }
-
     private void changeActiveColor(Paint color) {
         mCircleColor = color;
         invalidate();
@@ -119,5 +95,6 @@ public class GameButton extends View {
         this.mGameColor = gameColor;
     }
 
+    public GameColor getGameColor() {return this.mGameColor;}
 
 }

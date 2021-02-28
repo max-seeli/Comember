@@ -9,7 +9,7 @@
         android:id="@+id/mainFragment"
         android:name="com.project.comember.ui.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" >
+        tools:layout="@layout/main_fragment">
         <action
             android:id="@+id/mainFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
@@ -18,5 +18,25 @@
         android:id="@+id/gameFragment"
         android:name="com.project.comember.ui.GameFragment"
         android:label="fragment_game"
-        tools:layout="@layout/game_fragment" />
+        tools:layout="@layout/game_fragment" >
+        <action
+            android:id="@+id/gameFragment_to_gameOverFragment"
+            app:destination="@id/gameOverFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameOverFragment"
+        android:name="com.project.comember.ui.GameOverFragment"
+        android:label="fragment_game_over"
+        tools:layout="@layout/game_over_fragment" >
+        <argument
+            android:name="gameScore"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/gameOverFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/gameOverFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+    </fragment>
 </navigation>

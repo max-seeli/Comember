@@ -26,7 +26,7 @@ public class GameScoreCounter extends AppCompatTextView {
     }
 
     public void increment() {
-        this.setText(++mScore);
+        this.setText(Integer.toString(++mScore));
     }
 
     public int getScore() {

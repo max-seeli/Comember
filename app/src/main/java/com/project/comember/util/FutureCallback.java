@@ -1,4 +1,4 @@
-package com.project.comember;
+package com.project.comember.util;
 
 
 import java.util.concurrent.ExecutionException;
@@ -6,15 +6,13 @@ import java.util.concurrent.Future;
 
 public abstract class FutureCallback {
 
-    public FutureCallback(Future<?> f) {
+    public FutureCallback(Future<?> future) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    f.get();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
+                    future.get();
+                } catch (ExecutionException | InterruptedException e) {
                     e.printStackTrace();
                 } finally {
                     futureFinished();

@@ -1,23 +1,20 @@
 package com.project.comember.game;
 
-import android.util.Log;
-
 import com.project.comember.ui.GameFragment;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class GameEngine {
 
-    private int STANDARD_HIGHLIGHT_TIME = 600;
-    private int STANDARD_HIGHLIGHT_PAUSE_TIME = 200;
+    private static final int STANDARD_HIGHLIGHT_TIME = 600;
+    private static final int STANDARD_HIGHLIGHT_PAUSE_TIME = 200;
 
-    private GameFragment mGameController;
+    private final GameFragment mGameController;
     private GameStatus mGameStatus;
     private int mGameScore;
 
     private int checkColorIndex = 0;
-    private ArrayList<GameColor> mColorList = new ArrayList<>();
+    private final ArrayList<GameColor> mColorList = new ArrayList<>();
 
 
     public GameEngine(GameFragment gameController) {
@@ -26,10 +23,11 @@ public class GameEngine {
     }
 
     public void start() {
-        startNextRound();
+        if (mGameStatus == GameStatus.IDLE)
+            startNextRound();
     }
 
-    public void startNextRound() {
+    private void startNextRound() {
         checkColorIndex = 0;
         GameColor newColor = GameColor.getRandomColor();
         mColorList.add(newColor);

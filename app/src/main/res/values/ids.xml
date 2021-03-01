@@ -11,5 +11,7 @@
     <item name="button_play_again" type="id" />
     <item name="button_main_menu" type="id" />
     <item name="text_view_game_score_counter" type="id" />
+    <item name="game_start_button" type="id" />
+    <item name="text_view_click_to_start" type="id" />
 
 </resources>

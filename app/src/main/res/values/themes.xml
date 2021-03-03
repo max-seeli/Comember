@@ -10,8 +10,8 @@
         <item name="colorSecondaryVariant">@color/error</item>
         <item name="colorOnSecondary">@color/error</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/statusbar_darkgrey</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/light_gray</item>
         <!-- Background Color. -->
-        <item name="android:background">@color/background_grey</item>
+        <item name="android:background">@color/grey</item>
     </style>
 </resources>

@@ -78,7 +78,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginHorizontal="60dp"
         android:text="@string/play_again"
-        android:background="@color/background_contrast"
+        android:background="@color/dark_grey"
         style="@style/normal_text"/>
 
     <Button
@@ -88,7 +88,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginHorizontal="60dp"
         android:text="@string/main_menu"
-        android:background="@color/background_contrast"
+        android:background="@color/dark_grey"
         style="@style/normal_text"/>
 
 </LinearLayout>

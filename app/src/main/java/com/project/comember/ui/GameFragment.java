@@ -58,64 +58,14 @@ public class GameFragment extends Fragment {
 
         gameEngine = new GameEngine(this);
 
-        initializeAnimations();
-
         for (int i = 0; i < 4; i++) {
             initializeGameButton(i);
         }
 
-        gameStartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gameStartButton.setVisibility(View.GONE);
-                gameEngine.start();
-            }
+        gameStartButton.setOnClickListener(v -> {
+            gameStartButton.setVisibility(View.GONE);
+            gameEngine.start();
         });
-    }
-
-    private void initializeAnimations() {
-        int duration = 600;
-
-        AlphaAnimation blinkAnimationFadeIn = new AlphaAnimation(0f, 1f);
-        AlphaAnimation blinkAnimationFadeOut = new AlphaAnimation(1f, 0f);
-
-        blinkAnimationFadeIn.setDuration(duration);
-        blinkAnimationFadeOut.setDuration(duration);
-
-        blinkAnimationFadeIn.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                clickToStartTextView.startAnimation(blinkAnimationFadeOut);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-        blinkAnimationFadeOut.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                clickToStartTextView.startAnimation(blinkAnimationFadeIn);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-
-        clickToStartTextView.startAnimation(blinkAnimationFadeIn);
     }
 
     private void initializeGameButton(int index) {

@@ -17,10 +17,10 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/background_contrast"
+            android:background="@color/dark_grey"
             android:alpha="0.75"/>
 
-        <TextView
+        <com.project.comember.ui.widgets.BlinkingTextView
             android:id="@id/text_view_click_to_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -32,7 +32,6 @@ public class GameFragment extends Fragment {
     private GameEngine gameEngine;
 
     private View gameStartButton;
-    private TextView clickToStartTextView;
 
     private GameLayout gameLayout;
     private GameScoreCounter gameScoreCounter;
@@ -48,24 +47,21 @@ public class GameFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        gameStartButton = view.findViewById(R.id.game_start_button);
-        clickToStartTextView = view.findViewById(R.id.text_view_click_to_start);
+        gameEngine = new GameEngine(this);
 
+        gameStartButton = view.findViewById(R.id.game_start_button);
+        gameStartButton.setOnClickListener(button -> {
+            button.setVisibility(View.GONE);
+            gameEngine.start();
+        });
 
         gameLayout = view.findViewById(R.id.game_button_layout);
         gameScoreCounter = view.findViewById(R.id.game_score_counter);
         gameButtons = gameLayout.getGameButtons();
 
-        gameEngine = new GameEngine(this);
-
         for (int i = 0; i < 4; i++) {
             initializeGameButton(i);
         }
-
-        gameStartButton.setOnClickListener(v -> {
-            gameStartButton.setVisibility(View.GONE);
-            gameEngine.start();
-        });
     }
 
     private void initializeGameButton(int index) {

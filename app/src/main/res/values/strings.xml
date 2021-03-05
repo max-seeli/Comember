@@ -7,4 +7,6 @@
     <string name="main_menu">Main Menu</string>
     <string name="play_again">Play Again</string>
     <string name="click_to_start">Click to start</string>
+    <string name="play_spinning">Play Spinning</string>
+    <string name="play_no_repeat">Play No Repeat</string>
 </resources>

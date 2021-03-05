@@ -1,8 +1,13 @@
 package com.project.comember.game;
 
 import com.project.comember.ui.GameFragment;
+import com.project.comember.util.FutureCallback;
 
 import java.util.ArrayList;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class GameEngine {
 
@@ -28,12 +33,17 @@ public class GameEngine {
     }
 
     private void startNextRound() {
-        checkColorIndex = 0;
-        GameColor newColor = GameColor.getRandomColor();
-        mColorList.add(newColor);
+        new FutureCallback(wait(1000)) {
+            @Override
+            public void futureFinished() {
+                checkColorIndex = 0;
+                GameColor newColor = GameColor.getRandomColor();
+                mColorList.add(newColor);
 
-        this.mGameStatus = GameStatus.HIGHLIGHTING;
-        mGameController.highlightColorSequence(mColorList, STANDARD_HIGHLIGHT_TIME, STANDARD_HIGHLIGHT_PAUSE_TIME);
+                mGameStatus = GameStatus.HIGHLIGHTING;
+                mGameController.highlightColorSequence(mColorList, STANDARD_HIGHLIGHT_TIME, STANDARD_HIGHLIGHT_PAUSE_TIME);
+            }
+        };
     }
 
     public void highlightingFinished() {
@@ -67,5 +77,20 @@ public class GameEngine {
 
     public GameStatus getGameStatus() {
         return mGameStatus;
+    }
+
+    private Future<?> wait(int duration) {
+        ExecutorService waitExecutor = Executors.newSingleThreadExecutor();
+
+        return waitExecutor.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(duration);
+                } catch (InterruptedException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        });
     }
 }

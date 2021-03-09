@@ -64,9 +64,7 @@ public class GameFragment extends Fragment {
         final GameColor buttonColor = GameColor.valueOf(index);
 
         gameButtons[index].setGameColor(buttonColor);
-        gameButtons[index].setOnClickListener(view -> {
-            gameEngine.checkColorClicked(buttonColor);
-        });
+        gameButtons[index].setOnClickListener(view -> gameEngine.checkColorClicked(buttonColor));
     }
 
     public void highlightColorSequence(List<GameColor> gameColorSequence, int highlightMillis, int highlightPauseMillis) {

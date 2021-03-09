@@ -95,6 +95,5 @@
         app:duration="300"
         app:autoTransition="animateToEnd"
         app:pathMotionArc="startHorizontal">
-        <KeyFrameSet ></KeyFrameSet>
     </Transition>
 </MotionScene>

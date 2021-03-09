@@ -25,7 +25,7 @@ public enum GameColor {
     }
 
     public static GameColor valueOf(int colorType) {
-        return (GameColor)map.get(colorType);
+        return (GameColor) map.get(colorType);
     }
 
     public static GameColor getRandomColor() {

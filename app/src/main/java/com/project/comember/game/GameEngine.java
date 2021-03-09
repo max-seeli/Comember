@@ -4,7 +4,6 @@ import com.project.comember.ui.GameFragment;
 import com.project.comember.util.FutureCallback;
 
 import java.util.ArrayList;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -77,21 +76,14 @@ public class GameEngine {
         mGameController.gameLost(mGameScore);
     }
 
-    public GameStatus getGameStatus() {
-        return mGameStatus;
-    }
-
     private Future<?> wait(int duration) {
         ExecutorService waitExecutor = Executors.newSingleThreadExecutor();
 
-        return waitExecutor.submit(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(duration);
-                } catch (InterruptedException exception) {
-                    exception.printStackTrace();
-                }
+        return waitExecutor.submit(() -> {
+            try {
+                Thread.sleep(duration);
+            } catch (InterruptedException exception) {
+                exception.printStackTrace();
             }
         });
     }

@@ -9,8 +9,8 @@ public enum GameStatus {
     PLAYING(2),
     OVER(3);
 
-    private int value;
-    private static Map map = new HashMap<>();
+    private final int value;
+    private static final Map map = new HashMap<>();
 
     GameStatus(int value) {
         this.value = value;
@@ -23,7 +23,7 @@ public enum GameStatus {
     }
 
     public static GameStatus valueOf(int colorType) {
-        return (GameStatus)map.get(colorType);
+        return (GameStatus) map.get(colorType);
     }
 
     public int getValue() {

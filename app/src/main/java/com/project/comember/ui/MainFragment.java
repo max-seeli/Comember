@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,11 +17,8 @@ import androidx.navigation.Navigation;
 
 import com.project.comember.R;
 
+@SuppressLint("ClickableViewAccessibility")
 public class MainFragment extends Fragment {
-
-    public static MainFragment newInstance() {
-        return new MainFragment();
-    }
 
     @Nullable
     @Override
@@ -33,8 +29,6 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        MotionLayout motionController = (MotionLayout)view;
-
         Button playButton = view.findViewById(R.id.button_play);
         Button helpButton = view.findViewById(R.id.button_help);
 
@@ -42,20 +36,15 @@ public class MainFragment extends Fragment {
     }
 
     private View.OnTouchListener onTouchAfterAnimationNavigateTo(@IdRes int actionId) {
-        MotionLayout motionController = (MotionLayout)getView();
+        MotionLayout motionController = (MotionLayout) getView();
 
-        return new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch(event.getActionMasked()) {
-                    case MotionEvent.ACTION_UP:
-                        motionController.setTransitionListener(afterAnimationNavigateTo(actionId));
-                        motionController.transitionToEnd();
-
-                }
-
-                return true;
+        return (v, event) -> {
+            switch (event.getActionMasked()) {
+                case MotionEvent.ACTION_UP:
+                    motionController.setTransitionListener(afterAnimationNavigateTo(actionId));
+                    motionController.transitionToEnd();
             }
+            return true;
         };
     }
 

@@ -1,11 +1,11 @@
 package com.project.comember.ui.widgets;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -20,9 +20,9 @@ public class GameButton extends View {
 
     private Paint mCircleColor;
 
-    private Paint mMainColor;
-    private Paint mHighlightColor;
-    private Paint mBorderColor;
+    private final Paint mMainColor;
+    private final Paint mHighlightColor;
+    private final Paint mBorderColor;
 
     public GameButton(Context context) {
         this(context, null);
@@ -36,6 +36,7 @@ public class GameButton extends View {
         this(context, attrs, defStyleAttr, 0);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     public GameButton(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
 
@@ -56,20 +57,17 @@ public class GameButton extends View {
             attributes.recycle();
         }
 
-        setOnTouchListener(new OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch(event.getActionMasked()) {
-                    case MotionEvent.ACTION_DOWN:
-                        highlight();
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        unhighlight();
-                        break;
-                }
-
-                return false;
+        setOnTouchListener((v, event) -> {
+            switch (event.getActionMasked()) {
+                case MotionEvent.ACTION_DOWN:
+                    highlight();
+                    break;
+                case MotionEvent.ACTION_UP:
+                    unhighlight();
+                    break;
             }
+
+            return false;
         });
     }
 
@@ -96,6 +94,8 @@ public class GameButton extends View {
         this.mGameColor = gameColor;
     }
 
-    public GameColor getGameColor() {return this.mGameColor;}
+    public GameColor getGameColor() {
+        return this.mGameColor;
+    }
 
 }

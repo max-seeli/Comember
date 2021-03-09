@@ -25,7 +25,7 @@ public class ClickableGroup extends Group {
     public void setOnClickListener(@Nullable OnClickListener clickListener) {
         ViewParent parent = this.getParent();
         if (parent instanceof ConstraintLayout) {
-            this.setOnClickListener(clickListener, (ConstraintLayout)parent);
+            this.setOnClickListener(clickListener, (ConstraintLayout) parent);
         }
     }
 

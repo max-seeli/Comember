@@ -1,5 +1,6 @@
 package com.project.comember.ui.widgets;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 
@@ -7,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
+@SuppressLint("SetTextI18n")
 public class GameScoreCounter extends AppCompatTextView {
 
     int mScore = 0;
@@ -27,9 +29,5 @@ public class GameScoreCounter extends AppCompatTextView {
 
     public void increment() {
         this.setText(Integer.toString(++mScore));
-    }
-
-    public int getScore() {
-        return mScore;
     }
 }

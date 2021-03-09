@@ -1,6 +1,7 @@
 package com.project.comember.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.project.comember.misc.ClickableGroup;
+import com.project.comember.ui.widgets.BlinkingTextView;
 import com.project.comember.util.FutureCallback;
 import com.project.comember.misc.HighlightButtonRunnable;
 import com.project.comember.R;
@@ -31,8 +35,6 @@ public class GameFragment extends Fragment {
 
     private GameEngine gameEngine;
 
-    private View gameStartButton;
-
     private GameLayout gameLayout;
     private GameScoreCounter gameScoreCounter;
     private GameButton[] gameButtons;
@@ -49,16 +51,19 @@ public class GameFragment extends Fragment {
 
         gameEngine = new GameEngine(this);
 
-        gameStartButton = view.findViewById(R.id.game_start_button);
-        gameStartButton.setOnClickListener(button -> {
-            button.setVisibility(View.GONE);
-            gameEngine.start();
+        ClickableGroup clickToStartGroup = view.findViewById(R.id.click_to_start_group);
+
+        clickToStartGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickToStartGroup.setVisibility(View.INVISIBLE);
+                gameEngine.start();
+            }
         });
 
         gameLayout = view.findViewById(R.id.game_button_layout);
         gameScoreCounter = view.findViewById(R.id.game_score_counter);
         gameButtons = gameLayout.getGameButtons();
-
         for (int i = 0; i < 4; i++) {
             initializeGameButton(i);
         }

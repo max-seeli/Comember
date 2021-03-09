@@ -7,9 +7,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class GameLayout extends ViewGroup {
+public class GameLayout extends MotionLayout {
 
     private boolean mTouchable;
 
@@ -22,57 +27,33 @@ public class GameLayout extends ViewGroup {
     }
 
     public GameLayout(Context context, AttributeSet attrs, int defStyleAttr) {
-        this(context, attrs, defStyleAttr, 0);
+        super(context, attrs, defStyleAttr);
     }
 
-    public GameLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
 
-    //Only true for scrollable layouts
-    @Override
-    public boolean shouldDelayChildPressedState() {
-        return false;
-    }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int blockSize = Integer.min(MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.getSize(heightMeasureSpec));
-
-        setMeasuredDimension(blockSize, blockSize);
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        final int leftPos = getPaddingLeft();
-        final int rightPos = right - left - getPaddingRight();
-        final int topPos = getPaddingTop();
-        final int bottomPos = bottom - top - getPaddingBottom();
-
-        for (int i = 0; i < getChildCount(); i++) {
-            View child = getChildAt(i);
-            child.layout(leftPos, topPos, rightPos / 2, bottomPos / 2);
-            child.setPivotX((float) rightPos / 2);
-            child.setPivotY((float) bottomPos / 2);
-            child.setRotation(90f * i);
-        }
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return !mTouchable;
-    }
+//    @Override
+//    public boolean onInterceptTouchEvent(MotionEvent ev) {
+//        return !mTouchable;
+//    }
 
     public GameButton[] getGameButtons() {
         int childCount = getChildCount();
 
-        GameButton[] gameButtons = new GameButton[childCount];
+        List<GameButton> gameButtons = new ArrayList<GameButton>();
 
         for (int i = 0; i < childCount; i++) {
-            gameButtons[i] = (GameButton) getChildAt(i);
+            View child = getChildAt(i);
+            if (child instanceof GameButton)
+                gameButtons.add((GameButton)child);
         }
 
-        return gameButtons;
+        GameButton[] gameButtonsArray = new GameButton[gameButtons.size()];
+
+        for (int i = 0; i < gameButtons.size(); i ++)
+            gameButtonsArray[i] = gameButtons.get(i);
+
+        return gameButtonsArray;
     }
 
     public void setTouchable(boolean touchable) {

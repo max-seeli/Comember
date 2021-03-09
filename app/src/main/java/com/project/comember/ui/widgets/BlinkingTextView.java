@@ -1,7 +1,10 @@
 package com.project.comember.ui.widgets;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
@@ -22,42 +25,15 @@ public class BlinkingTextView extends androidx.appcompat.widget.AppCompatTextVie
 
     public BlinkingTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
-
-        Animation blinkingAnimation = createAnimation();
-
-        startAnimation(blinkingAnimation);
+        startBlinking();
     }
 
-    private Animation createAnimation() {
-        AlphaAnimation blinkAnimationFadeIn = new AlphaAnimation(0f, 1f);
-        AlphaAnimation blinkAnimationFadeOut = new AlphaAnimation(1f, 0f);
-
-        blinkAnimationFadeIn.setDuration(mDuration);
-        blinkAnimationFadeOut.setDuration(mDuration);
-
-        blinkAnimationFadeIn.setAnimationListener(createAlternateAnimationListener(blinkAnimationFadeOut));
-        blinkAnimationFadeOut.setAnimationListener(createAlternateAnimationListener(blinkAnimationFadeIn));
-        return blinkAnimationFadeOut;
-    }
-
-    private Animation.AnimationListener createAlternateAnimationListener(Animation otherAnimation) {
-        return new Animation.AnimationListener() {
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                startAnimation(otherAnimation);
-            }
-
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        };
+    private void startBlinking() {
+        ObjectAnimator blinkingAnimation = ObjectAnimator.ofFloat(this, View.ALPHA, 0f, 1f);
+        blinkingAnimation.setDuration(mDuration);
+        blinkingAnimation.setRepeatMode(ValueAnimator.REVERSE);
+        blinkingAnimation.setRepeatCount(ValueAnimator.INFINITE);
+        blinkingAnimation.start();
     }
 
     public void setDuration(int duration) {

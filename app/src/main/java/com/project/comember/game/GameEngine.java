@@ -33,6 +33,8 @@ public class GameEngine {
     }
 
     private void startNextRound() {
+        mGameStatus = GameStatus.HIGHLIGHTING;
+        mGameController.setClickable(false);
         new FutureCallback(wait(1000)) {
             @Override
             public void futureFinished() {
@@ -40,7 +42,6 @@ public class GameEngine {
                 GameColor newColor = GameColor.getRandomColor();
                 mColorList.add(newColor);
 
-                mGameStatus = GameStatus.HIGHLIGHTING;
                 mGameController.highlightColorSequence(mColorList, STANDARD_HIGHLIGHT_TIME, STANDARD_HIGHLIGHT_PAUSE_TIME);
             }
         };
@@ -48,6 +49,7 @@ public class GameEngine {
 
     public void highlightingFinished() {
         this.mGameStatus = GameStatus.PLAYING;
+        mGameController.setClickable(true);
     }
 
     public void checkColorClicked(GameColor clickedColor) {

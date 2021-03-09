@@ -1,30 +1,24 @@
 package com.project.comember.ui;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import com.project.comember.misc.ClickableGroup;
-import com.project.comember.ui.widgets.BlinkingTextView;
-import com.project.comember.util.FutureCallback;
-import com.project.comember.misc.HighlightButtonRunnable;
 import com.project.comember.R;
 import com.project.comember.game.GameColor;
 import com.project.comember.game.GameEngine;
+import com.project.comember.misc.ClickableGroup;
+import com.project.comember.misc.HighlightButtonRunnable;
 import com.project.comember.ui.widgets.GameButton;
 import com.project.comember.ui.widgets.GameLayout;
 import com.project.comember.ui.widgets.GameScoreCounter;
+import com.project.comember.util.FutureCallback;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -52,17 +46,14 @@ public class GameFragment extends Fragment {
         gameEngine = new GameEngine(this);
 
         ClickableGroup clickToStartGroup = view.findViewById(R.id.click_to_start_group);
-
-        clickToStartGroup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickToStartGroup.setVisibility(View.INVISIBLE);
-                gameEngine.start();
-            }
+        clickToStartGroup.setOnClickListener(clickedView -> {
+            clickToStartGroup.setVisibility(View.INVISIBLE);
+            gameEngine.start();
         });
 
-        gameLayout = view.findViewById(R.id.game_button_layout);
         gameScoreCounter = view.findViewById(R.id.game_score_counter);
+
+        gameLayout = view.findViewById(R.id.game_button_layout);
         gameButtons = gameLayout.getGameButtons();
         for (int i = 0; i < 4; i++) {
             initializeGameButton(i);
@@ -79,14 +70,11 @@ public class GameFragment extends Fragment {
     }
 
     public void highlightColorSequence(List<GameColor> gameColorSequence, int highlightMillis, int highlightPauseMillis) {
-
-        setClickable(false);
-
         Future<?> waitForExecution = null;
 
         ExecutorService executor = Executors.newSingleThreadExecutor();
-        for(GameColor gameColor : gameColorSequence) {
-             waitForExecution = executor.submit(new HighlightButtonRunnable(
+        for (GameColor gameColor : gameColorSequence) {
+            waitForExecution = executor.submit(new HighlightButtonRunnable(
                     gameButtons[gameColor.getValue()],
                     highlightMillis,
                     highlightPauseMillis
@@ -96,7 +84,6 @@ public class GameFragment extends Fragment {
         new FutureCallback(waitForExecution) {
             @Override
             public void futureFinished() {
-                setClickable(true);
                 gameEngine.highlightingFinished();
             }
         };
@@ -112,7 +99,7 @@ public class GameFragment extends Fragment {
         Navigation.findNavController(getView()).navigate(action);
     }
 
-    private void setClickable(boolean clickable) {
+    public void setClickable(boolean clickable) {
         gameLayout.setTouchable(clickable);
     }
 

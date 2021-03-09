@@ -16,7 +16,7 @@ import java.util.List;
 
 public class GameLayout extends MotionLayout {
 
-    private boolean mTouchable;
+    private boolean mTouchable = true;
 
     public GameLayout(Context context) {
         this(context, null);
@@ -32,10 +32,10 @@ public class GameLayout extends MotionLayout {
 
 
 
-//    @Override
-//    public boolean onInterceptTouchEvent(MotionEvent ev) {
-//        return !mTouchable;
-//    }
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return !mTouchable;
+    }
 
     public GameButton[] getGameButtons() {
         int childCount = getChildCount();

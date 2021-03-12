@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.project.comember.R;
@@ -48,7 +49,7 @@ public class GameFragment extends Fragment {
         ClickableGroup clickToStartGroup = view.findViewById(R.id.click_to_start_group);
         clickToStartGroup.setOnClickListener(clickedView -> {
             clickToStartGroup.setVisibility(View.INVISIBLE);
-            gameEngine.start();
+            startGame();
         });
 
         gameScoreCounter = view.findViewById(R.id.game_score_counter);
@@ -58,6 +59,10 @@ public class GameFragment extends Fragment {
         for (int i = 0; i < 4; i++) {
             initializeGameButton(i);
         }
+    }
+
+    protected void startGame() {
+        gameEngine.start();
     }
 
     private void initializeGameButton(int index) {
@@ -94,11 +99,13 @@ public class GameFragment extends Fragment {
     public void gameLost(int gameScore) {
         GameFragmentDirections.GameFragmentToGameOverFragment action = GameFragmentDirections.gameFragmentToGameOverFragment();
         action.setGameScore(gameScore);
+        action.setPlayAgainActionId(R.id.gameOverFragment_to_gameFragment);
         Navigation.findNavController(getView()).navigate(action);
     }
 
     public void setClickable(boolean clickable) {
         gameLayout.setTouchable(clickable);
     }
+
 
 }

@@ -15,8 +15,10 @@
             app:destination="@id/gameFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
-            app:popUpTo="@id/mainFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/mainFragment_to_spinningGameFragment"
+            app:destination="@id/spinningGameFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
@@ -47,6 +49,24 @@
             android:id="@+id/gameOverFragment_to_gameFragment"
             app:destination="@id/gameFragment"
             app:popUpTo="@id/gameOverFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/gameOverFragment_to_spinningGameFragment"
+            app:destination="@id/spinningGameFragment" />
+        <argument
+            android:name="playAgainActionId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/spinningGameFragment"
+        android:name="com.project.comember.ui.SpinningGameFragment"
+        android:label="fragment_spinning_game"
+        tools:layout="@layout/game_fragment" >
+        <action
+            android:id="@+id/spinningGameFragment_to_gameOverFragment"
+            app:destination="@id/gameOverFragment"
+            app:popUpTo="@id/spinningGameFragment"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>

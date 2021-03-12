@@ -7,9 +7,6 @@
         motion:constraintSetEnd="@id/end"
         motion:constraintSetStart="@id/start"
         motion:duration="300">
-        <OnClick
-            motion:clickAction="transitionToEnd"
-            motion:targetId="@id/button_play" />
     </Transition>
 
     <ConstraintSet android:id="@+id/start" />

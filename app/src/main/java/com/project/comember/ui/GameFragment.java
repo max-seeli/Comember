@@ -92,11 +92,20 @@ public class GameFragment extends Fragment {
         };
     }
 
+    public void unhighlightAll() {
+        for (GameButton gb : gameButtons) {
+            gb.unhighlight();
+        }
+    }
+
     public void incrementGameScore() {
         gameScoreCounter.increment();
     }
 
+    private boolean gameLost = false;
     public void gameLost(int gameScore) {
+        if (gameLost) return;
+        gameLost = true;
         GameFragmentDirections.GameFragmentToGameOverFragment action = GameFragmentDirections.gameFragmentToGameOverFragment();
         action.setGameScore(gameScore);
         action.setPlayAgainActionId(R.id.gameOverFragment_to_gameFragment);

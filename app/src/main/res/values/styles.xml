@@ -6,11 +6,12 @@
         <item name="android:textAllCaps">true</item>
         <item name="fontWeight">600</item>
     </style>
-    <style name="normal_text">
+    <style name="button_style">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/text_dark</item>
         <item name="android:textAllCaps">true</item>
         <item name="fontWeight">400</item>
+        <item name="android:background">@drawable/button_background</item>
     </style>
     <style name="bigger_text">
         <item name="android:textSize">22sp</item>

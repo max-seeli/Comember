@@ -8,7 +8,6 @@
     app:layoutDescription="@xml/main_fragment_scene"
     tools:context=".ui.MainFragment">
 
-
     <TextView
         android:id="@+id/textView2"
         style="@style/main_header"
@@ -35,7 +34,8 @@
         android:background="@drawable/red_circle_shape"
         app:layout_constraintEnd_toStartOf="@+id/green_circle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline4"/>
+        app:layout_constraintTop_toBottomOf="@+id/guideline4" />
+
     <View
         android:id="@+id/green_circle"
         android:layout_width="@dimen/main_circle_size"
@@ -71,28 +71,26 @@
 
     <Button
         android:id="@id/button_play"
-        style="@style/normal_text"
+        style="@style/button_style"
         android:layout_width="234dp"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/button_height"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
-        android:background="@color/dark_grey"
         android:text="@string/play"
         app:layout_constraintBottom_toTopOf="@+id/button_play_spinning"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/red_circle"
-        tools:layout_conversion_absoluteHeight="48dp"
+        tools:layout_conversion_absoluteHeight="@dimen/button_height"
         tools:layout_conversion_absoluteWidth="273dp" />
 
     <Button
         android:id="@id/button_play_spinning"
-        style="@style/normal_text"
+        style="@style/button_style"
         android:layout_width="234dp"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/button_height"
         android:layout_marginBottom="32dp"
-        android:background="@color/dark_grey"
         android:text="@string/play_spinning"
         app:layout_constraintBottom_toTopOf="@+id/button_play_no_repeat"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,11 +100,10 @@
 
     <Button
         android:id="@id/button_play_no_repeat"
-        style="@style/normal_text"
+        style="@style/button_style"
         android:layout_width="234dp"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/button_height"
         android:layout_marginBottom="32dp"
-        android:background="@color/dark_grey"
         android:text="@string/play_no_repeat"
         app:layout_constraintBottom_toTopOf="@+id/button_help"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,18 +113,17 @@
 
     <Button
         android:id="@id/button_help"
-        style="@style/normal_text"
+        style="@style/button_style"
         android:layout_width="234dp"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/button_height"
         android:layout_marginBottom="32dp"
-        android:background="@color/dark_grey"
         android:text="@string/help"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_play_no_repeat"
-        tools:layout_conversion_absoluteHeight="48dp"
+        tools:layout_conversion_absoluteHeight="@dimen/button_height"
         tools:layout_conversion_absoluteWidth="273dp" />
 
     <androidx.constraintlayout.helper.widget.Layer

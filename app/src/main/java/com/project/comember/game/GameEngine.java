@@ -34,6 +34,7 @@ public class GameEngine {
     private void startNextRound() {
         mGameStatus = GameStatus.HIGHLIGHTING;
         mGameController.setClickable(false);
+        mGameController.unhighlightAll();
         new FutureCallback(wait(1000)) {
             @Override
             public void futureFinished() {

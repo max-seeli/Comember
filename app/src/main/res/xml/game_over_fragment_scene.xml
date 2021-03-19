@@ -12,41 +12,6 @@
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
-        <Constraint
-            android:id="@+id/red_circle"
-            motion:layout_constraintEnd_toStartOf="@+id/green_circle"
-            android:layout_width="@dimen/main_circle_size"
-            android:layout_height="@dimen/main_circle_size"
-            motion:layout_constraintTop_toBottomOf="@+id/guideline5"
-            motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="64dp" />
-        <Constraint
-            android:id="@+id/green_circle"
-            motion:layout_constraintEnd_toStartOf="@+id/yellow_circle"
-            motion:layout_constraintStart_toEndOf="@+id/red_circle"
-            android:layout_width="@dimen/main_circle_size"
-            android:layout_height="@dimen/main_circle_size"
-            motion:layout_constraintTop_toBottomOf="@+id/guideline5"
-            motion:layout_constraintHorizontal_bias="0.5"
-            android:layout_marginTop="64dp" />
-        <Constraint
-            android:id="@+id/yellow_circle"
-            motion:layout_constraintEnd_toStartOf="@+id/blue_circle"
-            motion:layout_constraintStart_toEndOf="@+id/green_circle"
-            android:layout_width="@dimen/main_circle_size"
-            android:layout_height="@dimen/main_circle_size"
-            motion:layout_constraintTop_toBottomOf="@+id/guideline5"
-            motion:layout_constraintHorizontal_bias="0.5"
-            android:layout_marginTop="64dp" />
-        <Constraint
-            android:id="@+id/blue_circle"
-            motion:layout_constraintEnd_toEndOf="parent"
-            motion:layout_constraintStart_toEndOf="@+id/yellow_circle"
-            android:layout_width="@dimen/main_circle_size"
-            android:layout_height="@dimen/main_circle_size"
-            motion:layout_constraintTop_toBottomOf="@+id/guideline5"
-            motion:layout_constraintHorizontal_bias="0.5"
-            android:layout_marginTop="64dp" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">

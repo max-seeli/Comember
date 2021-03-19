@@ -12,6 +12,9 @@
         <item name="android:textAllCaps">true</item>
         <item name="fontWeight">400</item>
         <item name="android:background">@drawable/button_background</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:layout_width">@dimen/button_width</item>
+
     </style>
     <style name="bigger_text">
         <item name="android:textSize">22sp</item>

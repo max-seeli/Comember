@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
 
         android:layout_marginTop="64dp"
-        android:background="@color/dark_grey"
+        android:background="@drawable/button_background"
         android:paddingHorizontal="100dp"
         android:paddingVertical="50dp"
         android:text="@string/app_name"
@@ -30,50 +30,44 @@
         android:layout_width="@dimen/main_circle_size"
 
         android:layout_height="@dimen/main_circle_size"
-        android:layout_marginTop="64dp"
         android:background="@drawable/red_circle_shape"
         app:layout_constraintEnd_toStartOf="@+id/green_circle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline4" />
+        app:layout_constraintTop_toBottomOf="@+id/barrier2" />
 
     <View
         android:id="@+id/green_circle"
         android:layout_width="@dimen/main_circle_size"
         android:layout_height="@dimen/main_circle_size"
-        android:layout_marginTop="64dp"
         android:background="@drawable/green_circle_shape"
         app:layout_constraintEnd_toStartOf="@+id/yellow_circle"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/red_circle"
-        app:layout_constraintTop_toBottomOf="@+id/guideline4" />
+        app:layout_constraintTop_toBottomOf="@+id/barrier2" />
 
     <View
         android:id="@+id/yellow_circle"
         android:layout_width="@dimen/main_circle_size"
         android:layout_height="@dimen/main_circle_size"
-        android:layout_marginTop="64dp"
         android:background="@drawable/yellow_circle_shape"
         app:layout_constraintEnd_toStartOf="@+id/blue_circle"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/green_circle"
-        app:layout_constraintTop_toBottomOf="@+id/guideline4" />
+        app:layout_constraintTop_toBottomOf="@+id/barrier2" />
 
     <View
         android:id="@+id/blue_circle"
         android:layout_width="@dimen/main_circle_size"
         android:layout_height="@dimen/main_circle_size"
-        android:layout_marginTop="64dp"
         android:background="@drawable/blue_circle_shape"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/yellow_circle"
-        app:layout_constraintTop_toBottomOf="@+id/guideline4" />
+        app:layout_constraintTop_toBottomOf="@+id/barrier2" />
 
     <Button
         android:id="@id/button_play"
         style="@style/button_style"
-        android:layout_width="234dp"
-        android:layout_height="@dimen/button_height"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
         android:text="@string/play"
@@ -88,8 +82,6 @@
     <Button
         android:id="@id/button_play_spinning"
         style="@style/button_style"
-        android:layout_width="234dp"
-        android:layout_height="@dimen/button_height"
         android:layout_marginBottom="32dp"
         android:text="@string/play_spinning"
         app:layout_constraintBottom_toTopOf="@+id/button_play_no_repeat"
@@ -101,8 +93,6 @@
     <Button
         android:id="@id/button_play_no_repeat"
         style="@style/button_style"
-        android:layout_width="234dp"
-        android:layout_height="@dimen/button_height"
         android:layout_marginBottom="32dp"
         android:text="@string/play_no_repeat"
         app:layout_constraintBottom_toTopOf="@+id/button_help"
@@ -114,8 +104,6 @@
     <Button
         android:id="@id/button_help"
         style="@style/button_style"
-        android:layout_width="234dp"
-        android:layout_height="@dimen/button_height"
         android:layout_marginBottom="32dp"
         android:text="@string/help"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -139,11 +127,19 @@
         app:constraint_referenced_ids="blue_circle,yellow_circle" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
+        android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="191dp" />
+        app:layout_constraintGuide_begin="191dp"/>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierMargin="32dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="guideline, textView2"/>
 
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

@@ -44,7 +44,7 @@ public class GameFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        gameEngine = new GameEngine(this);
+        gameEngine = getGameEngine(this);
 
         ClickableGroup clickToStartGroup = view.findViewById(R.id.click_to_start_group);
         clickToStartGroup.setOnClickListener(clickedView -> {
@@ -59,6 +59,10 @@ public class GameFragment extends Fragment {
         for (int i = 0; i < 4; i++) {
             initializeGameButton(i);
         }
+    }
+
+    protected GameEngine getGameEngine(GameFragment gameController) {
+        return new GameEngine(gameController);
     }
 
     protected void startGame() {

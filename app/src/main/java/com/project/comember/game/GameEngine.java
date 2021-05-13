@@ -4,6 +4,7 @@ import com.project.comember.ui.GameFragment;
 import com.project.comember.util.FutureCallback;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -42,9 +43,13 @@ public class GameEngine {
                 GameColor newColor = GameColor.getRandomColor();
                 mColorList.add(newColor);
 
-                mGameController.highlightColorSequence(mColorList, STANDARD_HIGHLIGHT_TIME, STANDARD_HIGHLIGHT_PAUSE_TIME);
+                startHighlighting(mColorList, STANDARD_HIGHLIGHT_TIME, STANDARD_HIGHLIGHT_PAUSE_TIME);
             }
         };
+    }
+
+    protected void startHighlighting(List<GameColor> colorList, int highlightTime, int pauseTime) {
+        mGameController.highlightColorSequence(colorList, highlightTime, pauseTime);
     }
 
     public void highlightingFinished() {

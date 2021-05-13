@@ -31,11 +31,12 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Button playButton = view.findViewById(R.id.button_play);
         Button playSpinningButton = view.findViewById(R.id.button_play_spinning);
-        Button playNoRepeat = view.findViewById(R.id.button_play_no_repeat);
+        Button playNoRepeatButton = view.findViewById(R.id.button_play_no_repeat);
         Button helpButton = view.findViewById(R.id.button_help);
 
         playButton.setOnTouchListener(onTouchAfterAnimationNavigateTo(R.id.mainFragment_to_gameFragment));
         playSpinningButton.setOnTouchListener(onTouchAfterAnimationNavigateTo(R.id.mainFragment_to_spinningGameFragment));
+        playNoRepeatButton.setOnTouchListener(onTouchAfterAnimationNavigateTo(R.id.mainFragment_to_noRepeatGameFragment));
     }
 
     private View.OnTouchListener onTouchAfterAnimationNavigateTo(@IdRes int actionId) {

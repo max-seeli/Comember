@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 
 import com.project.comember.R;
 import com.project.comember.game.GameColor;
+import com.project.comember.sound.GameSoundPlayer;
 
 public class GameButton extends View {
 
@@ -46,6 +47,8 @@ public class GameButton extends View {
     @SuppressLint("ClickableViewAccessibility")
     public GameButton(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+
+        GameSoundPlayer.initSounds(getContext());
 
         mMainColor = new Paint(Paint.ANTI_ALIAS_FLAG);
         mHighlightColor = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -91,6 +94,7 @@ public class GameButton extends View {
 
 
     public void highlight() {
+        GameSoundPlayer.playSoundColor(getContext(), getGameColor());
         changeActiveColor(mHighlightColor, false);
         changeStrokeSize(HIGHLIGHT_STROKE_SIZE);
     }

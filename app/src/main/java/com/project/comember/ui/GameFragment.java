@@ -34,6 +34,8 @@ public class GameFragment extends Fragment {
     private GameScoreCounter gameScoreCounter;
     private GameButton[] gameButtons;
 
+    private ExecutorService executor;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -76,10 +78,17 @@ public class GameFragment extends Fragment {
         gameButtons[index].setOnClickListener(view -> gameEngine.checkColorClicked(buttonColor));
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if(executor != null)
+            executor.shutdownNow();
+    }
+
     public void highlightColorSequence(List<GameColor> gameColorSequence, int highlightMillis, int highlightPauseMillis) {
         Future<?> waitForExecution = null;
 
-        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor = Executors.newSingleThreadExecutor();
         for (GameColor gameColor : gameColorSequence) {
             waitForExecution = executor.submit(new HighlightButtonRunnable(
                     gameButtons[gameColor.getValue()],
@@ -87,7 +96,6 @@ public class GameFragment extends Fragment {
                     highlightPauseMillis
             ));
         }
-
         new FutureCallback(waitForExecution) {
             @Override
             public void futureFinished() {

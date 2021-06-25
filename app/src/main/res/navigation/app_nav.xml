@@ -11,14 +11,8 @@
         android:label="main_fragment"
         tools:layout="@layout/main_fragment">
         <action
-            android:id="@+id/mainFragment_to_gameFragment"
-            app:destination="@id/gameFragment" />
-        <action
-            android:id="@+id/mainFragment_to_spinningGameFragment"
-            app:destination="@id/spinningGameFragment" />
-        <action
-            android:id="@+id/mainFragment_to_noRepeatGameFragment"
-            app:destination="@id/noRepeatGameFragment" />
+            android:id="@+id/mainFragment_to_gameModeFragment"
+            app:destination="@id/gameModeFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
@@ -78,8 +72,23 @@
         android:label="fragment_no_repeat_game"
         tools:layout="@layout/game_fragment" >
         <action
-            android:id="@+id/action_noRepeatGameFragment_to_gameOverFragment"
+            android:id="@+id/noRepeatGameFragment_to_gameOverFragment"
             app:destination="@id/gameOverFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameModeFragment"
+        android:name="com.project.comember.ui.GameModeFragment"
+        android:label="game_mode_fragment"
+        tools:layout="@layout/game_mode_fragment" >
+        <action
+            android:id="@+id/gameModeFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+        <action
+            android:id="@+id/gameModeFragment_to_spinningGameFragment"
+            app:destination="@id/spinningGameFragment" />
+        <action
+            android:id="@+id/gameModeFragment_to_noRepeatGameFragment"
+            app:destination="@id/noRepeatGameFragment" />
     </fragment>
 </navigation>

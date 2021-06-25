@@ -15,7 +15,7 @@ public class NoRepeatGameFragment extends GameFragment {
 
     @Override
     public void gameLost(int gameScore) {
-        NoRepeatGameFragmentDirections.ActionNoRepeatGameFragmentToGameOverFragment action = NoRepeatGameFragmentDirections.actionNoRepeatGameFragmentToGameOverFragment();
+        NoRepeatGameFragmentDirections.NoRepeatGameFragmentToGameOverFragment action = NoRepeatGameFragmentDirections.noRepeatGameFragmentToGameOverFragment();
         action.setGameScore(gameScore);
         action.setPlayAgainActionId(R.id.gameOverFragment_to_noRepeatGameFragment);
         Navigation.findNavController(getView()).navigate(action);

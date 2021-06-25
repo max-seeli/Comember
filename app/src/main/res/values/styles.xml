@@ -8,13 +8,20 @@
     </style>
     <style name="button_style">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textAllCaps">true</item>
         <item name="fontWeight">400</item>
         <item name="android:background">@drawable/button_background</item>
         <item name="android:layout_height">@dimen/button_height</item>
         <item name="android:layout_width">@dimen/button_width</item>
 
+    </style>
+    <style name="game_mode_title">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontWeight">800</item>
     </style>
     <style name="bigger_text">
         <item name="android:textSize">22sp</item>
@@ -24,7 +31,19 @@
     </style>
     <style name="highscore_text">
         <item name="android:textSize">176sp</item>
-        <item name="android:textColor">@color/dark_grey</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontWeight">800</item>
+    </style>
+    <style name="score_style">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <style name="score_value_style">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAllCaps">true</item>
         <item name="android:textStyle">bold</item>
         <item name="fontWeight">800</item>
     </style>

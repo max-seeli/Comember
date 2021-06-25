@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey"
     android:orientation="vertical"
     app:layoutDescription="@xml/game_over_fragment_scene"
     tools:context=".ui.GameOverFragment">
@@ -92,14 +93,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="235dp"/>
+        app:layout_constraintGuide_begin="235dp" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:barrierMargin="32dp"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="guideline, text_view_game_score_counter"/>
+        app:barrierMargin="32dp"
+        app:constraint_referenced_ids="guideline, text_view_game_score_counter" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

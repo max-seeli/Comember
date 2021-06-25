@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/dark_grey">
+
+            <ImageView
+                android:id="@+id/card_image"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="10dp"
+                android:scaleType="centerInside"
+                app:layout_constraintBottom_toTopOf="@+id/card_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/card_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="3dp"
+                android:text="Title"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@+id/card_info"
+                app:layout_constraintStart_toStartOf="@+id/card_image"
+                app:layout_constraintTop_toBottomOf="@+id/card_image" />
+
+            <TextView
+                android:id="@+id/card_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:drawablePadding="10dp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="This is the info part of the cafada fdafa dsfasfa sdfafa sdfard"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/card_title"
+                app:layout_constraintTop_toBottomOf="@+id/card_title" />
+
+
+            <TextView
+                android:id="@+id/card_high_score"
+                style="@style/score_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:text="Best: "
+                android:textColor="@android:color/white"
+                app:layout_constraintBaseline_toBaselineOf="@+id/card_high_score_value"
+                app:layout_constraintEnd_toStartOf="@+id/card_high_score_value"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/card_high_score_value"
+                style="@style/score_value_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="100dp"
+                android:text="0"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toTopOf="@+id/card_avg_score_value"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/card_high_score"                />
+
+
+            <TextView
+                android:id="@+id/card_avg_score"
+                style="@style/score_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:text="Average: "
+                android:textColor="@android:color/white"
+                app:layout_constraintBaseline_toBaselineOf="@+id/card_avg_score_value"
+                app:layout_constraintEnd_toStartOf="@+id/card_avg_score_value"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/card_avg_score_value"
+                style="@style/score_value_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="368dp"
+                android:layout_marginEnd="100dp"
+                android:text="0"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toTopOf="@+id/card_last_score_value"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/card_avg_score"/>
+
+            <TextView
+                android:id="@+id/card_last_score"
+                style="@style/score_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:text="Last: "
+                android:textColor="@android:color/white"
+                app:layout_constraintBaseline_toBaselineOf="@+id/card_last_score_value"
+                app:layout_constraintEnd_toStartOf="@+id/card_last_score_value"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/card_last_score_value"
+                style="@style/score_value_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="32dp"
+                android:text="0"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/card_last_score" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

@@ -1,12 +1,20 @@
 <resources>
     <string name="app_name">Comember</string>
-    <string name="play">Play</string>
-    <string name="help">Help</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="main_menu">Main Menu</string>
+
+    <!--  GameModeFragment  -->
+    <string name="game_mode_classic">Classic</string>
+    <string name="game_mode_classic_description">Repeat the highlighted sequence of colors.</string>
+
+    <string name="game_mode_spinning">Spinning</string>
+    <string name="game_mode_spinning_description">The playing field starts spinning.</string>
+
+    <string name="game_mode_no_repeat">No Repeat</string>
+    <string name="game_mode_no_repeat_description">The whole sequence is never repeated, only the newest color will be shown.</string>
+
+    <!--  GameFragment  -->
+    <string name="click_to_start">Click to Start</string>
+
+    <!--  GameOverFragment  -->
     <string name="play_again">Play Again</string>
-    <string name="click_to_start">Click to start</string>
-    <string name="play_spinning">Play Spinning</string>
-    <string name="play_no_repeat">Play No Repeat</string>
+    <string name="main_menu">Main Menu</string>
 </resources>

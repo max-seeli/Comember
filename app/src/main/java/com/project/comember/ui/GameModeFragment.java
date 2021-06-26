@@ -41,9 +41,37 @@ public class GameModeFragment extends Fragment {
 
     private List<GameMode> getGameModeList() {
         List<GameMode> gameModeList = new ArrayList<>();
-        gameModeList.add(new GameMode(R.drawable.ic_game_button, "Classic", "Repeat the highlighted sequence of colors.", 15, 5, 3, R.id.gameModeFragment_to_gameFragment));
-        gameModeList.add(new GameMode(R.drawable.ic_game_button_spinning, "Spinning", "The playing field starts spinning.", 18, 5, 2, R.id.gameModeFragment_to_spinningGameFragment));
-        gameModeList.add(new GameMode(R.drawable.ic_game_button_no_repeat, "No Repeat", "The whole sequence is never repeated, only the new color will be shown.", 16, 3, 1, R.id.gameModeFragment_to_noRepeatGameFragment));
+        gameModeList.add(
+                new GameMode(
+                        R.drawable.ic_game_button,
+                        getString(R.string.game_mode_classic),
+                        getString(R.string.game_mode_classic_description),
+                        15,
+                        5,
+                        3,
+                        R.id.gameModeFragment_to_gameFragment
+                ));
+
+        gameModeList.add(
+                new GameMode(R.drawable.ic_game_button_spinning,
+                        getString(R.string.game_mode_spinning),
+                        getString(R.string.game_mode_spinning_description),
+                        18,
+                        5,
+                        2,
+                        R.id.gameModeFragment_to_spinningGameFragment
+                ));
+
+        gameModeList.add(
+                new GameMode(
+                        R.drawable.ic_game_button_no_repeat,
+                        getString(R.string.game_mode_no_repeat),
+                        getString(R.string.game_mode_no_repeat_description),
+                        16,
+                        3,
+                        1,
+                        R.id.gameModeFragment_to_noRepeatGameFragment
+                ));
 
         return gameModeList;
     }

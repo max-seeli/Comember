@@ -1,17 +1,2 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.Comember" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/error</item>
-        <item name="colorPrimaryVariant">@color/error</item>
-        <item name="colorOnPrimary">@color/error</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/error</item>
-        <item name="colorSecondaryVariant">@color/error</item>
-        <item name="colorOnSecondary">@color/error</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/light_gray</item>
-        <!-- Background Color. -->
-        <item name="android:background">@android:color/transparent</item>
-    </style>
 </resources>

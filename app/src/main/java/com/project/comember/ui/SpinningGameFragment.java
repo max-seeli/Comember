@@ -8,6 +8,8 @@ import androidx.constraintlayout.helper.widget.Layer;
 import androidx.navigation.Navigation;
 
 import com.project.comember.R;
+import com.project.comember.game.GameMode;
+import com.project.comember.game.GameStatistics;
 
 public class SpinningGameFragment extends GameFragment {
     @Override
@@ -30,6 +32,8 @@ public class SpinningGameFragment extends GameFragment {
 
     @Override
     public void gameLost(int gameScore) {
+        GameStatistics.setNewScore(getContext(), GameMode.SPINNING, gameScore);
+
         SpinningGameFragmentDirections.SpinningGameFragmentToGameOverFragment action = SpinningGameFragmentDirections.spinningGameFragmentToGameOverFragment();
         action.setGameScore(gameScore);
         action.setPlayAgainActionId(R.id.gameOverFragment_to_spinningGameFragment);

@@ -14,6 +14,8 @@ import androidx.navigation.Navigation;
 import com.project.comember.R;
 import com.project.comember.game.GameColor;
 import com.project.comember.game.GameEngine;
+import com.project.comember.game.GameMode;
+import com.project.comember.game.GameStatistics;
 import com.project.comember.misc.ClickableGroup;
 import com.project.comember.misc.HighlightButtonRunnable;
 import com.project.comember.ui.widgets.GameButton;
@@ -118,6 +120,9 @@ public class GameFragment extends Fragment {
     public void gameLost(int gameScore) {
         if (gameLost) return;
         gameLost = true;
+
+        GameStatistics.setNewScore(getContext(), GameMode.CLASSIC, gameScore);
+
         GameFragmentDirections.GameFragmentToGameOverFragment action = GameFragmentDirections.gameFragmentToGameOverFragment();
         action.setGameScore(gameScore);
         action.setPlayAgainActionId(R.id.gameOverFragment_to_gameFragment);

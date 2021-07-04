@@ -12,23 +12,23 @@ import androidx.navigation.Navigation;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.project.comember.R;
-import com.project.comember.game.GameMode;
+import com.project.comember.game.GameModeInfo;
 
 import java.util.List;
 
 public class GameModeAdapter extends PagerAdapter {
 
-    private List<GameMode> gameModeList;
+    private List<GameModeInfo> gameModeInfoList;
     private Context context;
 
-    public GameModeAdapter(List<GameMode> gameModeList, Context context) {
-        this.gameModeList = gameModeList;
+    public GameModeAdapter(List<GameModeInfo> gameModeInfoList, Context context) {
+        this.gameModeInfoList = gameModeInfoList;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return gameModeList.size();
+        return gameModeInfoList.size();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class GameModeAdapter extends PagerAdapter {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.game_mode_cards, container, false);
 
-        GameMode gameMode = gameModeList.get(position);
+        GameModeInfo gameModeInfo = gameModeInfoList.get(position);
 
         ImageView cardImage = view.findViewById(R.id.card_image);
         TextView cardTitle = view.findViewById(R.id.card_title);
@@ -52,17 +52,17 @@ public class GameModeAdapter extends PagerAdapter {
         TextView cardLastScore = view.findViewById(R.id.card_last_score_value);
 
 
-        cardImage.setImageResource(gameMode.getImageSource());
-        cardTitle.setText(gameMode.getName());
-        cardInfo.setText(gameMode.getInfo());
-        cardHighScore.setText(Integer.toString(gameMode.getHighScore()));
-        cardAvgScore.setText(Integer.toString(gameMode.getAvgScore()));
-        cardLastScore.setText(Integer.toString(gameMode.getLastScore()));
+        cardImage.setImageResource(gameModeInfo.getImageSource());
+        cardTitle.setText(gameModeInfo.getName());
+        cardInfo.setText(gameModeInfo.getInfo());
+        cardHighScore.setText(Integer.toString(gameModeInfo.getHighScore()));
+        cardAvgScore.setText(Float.toString(gameModeInfo.getAvgScore()));
+        cardLastScore.setText(Integer.toString(gameModeInfo.getLastScore()));
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(container).navigate(gameMode.getActionId());
+                Navigation.findNavController(container).navigate(gameModeInfo.getActionId());
             }
         });
 

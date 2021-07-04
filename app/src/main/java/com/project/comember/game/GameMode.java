@@ -1,78 +1,31 @@
 package com.project.comember.game;
 
-public class GameMode {
+import java.util.HashMap;
+import java.util.Map;
 
-    private int imageSource;
-    private String name;
-    private String info;
-    private int highScore;
-    private int avgScore;
-    private int lastScore;
-    private int actionId;
+public enum GameMode {
+    CLASSIC(0),
+    SPINNING(1),
+    NOREPEAT(2);
 
-    public GameMode(int imageSource, String name, String info, int highScore, int avgScore, int lastScore, int actionId) {
-        this.imageSource = imageSource;
-        this.name = name;
-        this.info = info;
-        this.highScore = highScore;
-        this.avgScore = avgScore;
-        this.lastScore = lastScore;
-        this.actionId = actionId;
+    private final int value;
+    private static final Map map = new HashMap<>();
+
+    GameMode(int value) {
+        this.value = value;
     }
 
-    public int getImageSource() {
-        return imageSource;
+    static {
+        for (GameMode gameMode : GameMode.values()) {
+            map.put(gameMode.value, gameMode);
+        }
     }
 
-    public void setImageSource(int imageSource) {
-        this.imageSource = imageSource;
+    public static GameStatus valueOf(int colorType) {
+        return (GameStatus) map.get(colorType);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getInfo() {
-        return info;
-    }
-
-    public void setInfo(String info) {
-        this.info = info;
-    }
-
-    public int getHighScore() {
-        return highScore;
-    }
-
-    public void setHighScore(int highScore) {
-        this.highScore = highScore;
-    }
-
-    public int getAvgScore() {
-        return avgScore;
-    }
-
-    public void setAvgScore(int avgScore) {
-        this.avgScore = avgScore;
-    }
-
-    public int getLastScore() {
-        return lastScore;
-    }
-
-    public void setLastScore(int lastScore) {
-        this.lastScore = lastScore;
-    }
-
-    public int getActionId() {
-        return actionId;
-    }
-
-    public void setActionId(int actionId) {
-        this.actionId = actionId;
+    public int getValue() {
+        return value;
     }
 }

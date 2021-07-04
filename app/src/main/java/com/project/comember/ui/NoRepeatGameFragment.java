@@ -4,6 +4,8 @@ import androidx.navigation.Navigation;
 
 import com.project.comember.R;
 import com.project.comember.game.GameEngine;
+import com.project.comember.game.GameMode;
+import com.project.comember.game.GameStatistics;
 import com.project.comember.game.NoRepeatGameEngine;
 
 public class NoRepeatGameFragment extends GameFragment {
@@ -15,6 +17,8 @@ public class NoRepeatGameFragment extends GameFragment {
 
     @Override
     public void gameLost(int gameScore) {
+        GameStatistics.setNewScore(getContext(), GameMode.NOREPEAT, gameScore);
+
         NoRepeatGameFragmentDirections.NoRepeatGameFragmentToGameOverFragment action = NoRepeatGameFragmentDirections.noRepeatGameFragmentToGameOverFragment();
         action.setGameScore(gameScore);
         action.setPlayAgainActionId(R.id.gameOverFragment_to_noRepeatGameFragment);

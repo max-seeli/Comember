@@ -1,5 +1,6 @@
 package com.project.comember.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,8 @@ import android.view.ViewGroup;
 
 import com.project.comember.R;
 import com.project.comember.game.GameMode;
+import com.project.comember.game.GameModeInfo;
+import com.project.comember.game.GameStatistics;
 import com.project.comember.misc.GameModeAdapter;
 
 import java.util.ArrayList;
@@ -39,40 +42,42 @@ public class GameModeFragment extends Fragment {
 
     }
 
-    private List<GameMode> getGameModeList() {
-        List<GameMode> gameModeList = new ArrayList<>();
-        gameModeList.add(
-                new GameMode(
+    private List<GameModeInfo> getGameModeList() {
+        Context context = getContext();
+        
+        List<GameModeInfo> gameModeInfoList = new ArrayList<>();        
+        gameModeInfoList.add(
+                new GameModeInfo(
                         R.drawable.ic_game_button,
                         getString(R.string.game_mode_classic),
                         getString(R.string.game_mode_classic_description),
-                        15,
-                        5,
-                        3,
+                        GameStatistics.getHighScore(context, GameMode.CLASSIC),
+                        GameStatistics.getAverageScore(context, GameMode.CLASSIC),
+                        GameStatistics.getLastScore(context, GameMode.CLASSIC),
                         R.id.gameModeFragment_to_gameFragment
                 ));
 
-        gameModeList.add(
-                new GameMode(R.drawable.ic_game_button_spinning,
+        gameModeInfoList.add(
+                new GameModeInfo(R.drawable.ic_game_button_spinning,
                         getString(R.string.game_mode_spinning),
                         getString(R.string.game_mode_spinning_description),
-                        18,
-                        5,
-                        2,
+                        GameStatistics.getHighScore(context, GameMode.SPINNING),
+                        GameStatistics.getAverageScore(context, GameMode.SPINNING),
+                        GameStatistics.getLastScore(context, GameMode.SPINNING),
                         R.id.gameModeFragment_to_spinningGameFragment
                 ));
 
-        gameModeList.add(
-                new GameMode(
+        gameModeInfoList.add(
+                new GameModeInfo(
                         R.drawable.ic_game_button_no_repeat,
                         getString(R.string.game_mode_no_repeat),
                         getString(R.string.game_mode_no_repeat_description),
-                        16,
-                        3,
-                        1,
+                        GameStatistics.getHighScore(context, GameMode.NOREPEAT),
+                        GameStatistics.getAverageScore(context, GameMode.NOREPEAT),
+                        GameStatistics.getLastScore(context, GameMode.NOREPEAT),
                         R.id.gameModeFragment_to_noRepeatGameFragment
                 ));
 
-        return gameModeList;
+        return gameModeInfoList;
     }
 }

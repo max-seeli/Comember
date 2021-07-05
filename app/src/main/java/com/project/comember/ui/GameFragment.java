@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.project.comember.R;
@@ -60,9 +59,8 @@ public class GameFragment extends Fragment {
 
         gameLayout = view.findViewById(R.id.game_button_layout);
         gameButtons = gameLayout.getGameButtons();
-        for (int i = 0; i < 4; i++) {
-            initializeGameButton(i);
-        }
+
+        initializeGameButtons();
     }
 
     protected GameEngine getGameEngine(GameFragment gameController) {
@@ -73,18 +71,13 @@ public class GameFragment extends Fragment {
         gameEngine.start();
     }
 
-    private void initializeGameButton(int index) {
-        final GameColor buttonColor = GameColor.valueOf(index);
+    private void initializeGameButtons() {
+        for (int index = 0; index < 4; index++) {
+            final GameColor buttonColor = GameColor.valueOf(index);
 
-        gameButtons[index].setGameColor(buttonColor);
-        gameButtons[index].setOnClickListener(view -> gameEngine.checkColorClicked(buttonColor));
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        if(executor != null)
-            executor.shutdownNow();
+            gameButtons[index].setGameColor(buttonColor);
+            gameButtons[index].setOnClickListener(view -> gameEngine.checkColorClicked(buttonColor));
+        }
     }
 
     public void highlightColorSequence(List<GameColor> gameColorSequence, int highlightMillis, int highlightPauseMillis) {
@@ -112,11 +105,16 @@ public class GameFragment extends Fragment {
         }
     }
 
+    public void setClickableTimePercentRemaining(int percentRemaining) {
+        gameScoreCounter.setProgress(100 - percentRemaining);
+    }
+
     public void incrementGameScore() {
         gameScoreCounter.increment();
     }
 
     private boolean gameLost = false;
+
     public void gameLost(int gameScore) {
         if (gameLost) return;
         gameLost = true;
@@ -133,5 +131,10 @@ public class GameFragment extends Fragment {
         gameLayout.setTouchable(clickable);
     }
 
-
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if (executor != null)
+            executor.shutdownNow();
+    }
 }

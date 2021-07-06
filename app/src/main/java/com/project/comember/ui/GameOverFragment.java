@@ -28,6 +28,7 @@ public class GameOverFragment extends Fragment {
         return inflater.inflate(R.layout.game_over_fragment, container, false);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         int gameScore = GameOverFragmentArgs.fromBundle(getArguments()).getGameScore();
@@ -48,10 +49,9 @@ public class GameOverFragment extends Fragment {
         MotionLayout motionController = (MotionLayout) getView();
 
         return (v, event) -> {
-            switch (event.getActionMasked()) {
-                case MotionEvent.ACTION_UP:
-                    motionController.setTransitionListener(afterAnimationNavigateTo(actionId));
-                    motionController.transitionToEnd();
+            if (event.getActionMasked() == MotionEvent.ACTION_UP) {
+                motionController.setTransitionListener(afterAnimationNavigateTo(actionId));
+                motionController.transitionToEnd();
             }
             return true;
         };

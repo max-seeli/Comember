@@ -7,7 +7,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.motion.widget.MotionLayout;
@@ -29,23 +28,22 @@ public class MainFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         View playButton = view.findViewById(R.id.play_button_background);
-        playButton.setOnTouchListener(onTouchAfterAnimationNavigateTo(R.id.mainFragment_to_gameModeFragment));
+        playButton.setOnTouchListener(onTouchAfterAnimationNavigateTo());
     }
 
-    private View.OnTouchListener onTouchAfterAnimationNavigateTo(@IdRes int actionId) {
+    private View.OnTouchListener onTouchAfterAnimationNavigateTo() {
         MotionLayout motionController = (MotionLayout) getView();
 
         return (v, event) -> {
-            switch (event.getActionMasked()) {
-                case MotionEvent.ACTION_UP:
-                    motionController.setTransitionListener(afterAnimationNavigateTo(actionId));
-                    motionController.transitionToEnd();
+            if (event.getActionMasked() == MotionEvent.ACTION_UP) {
+                motionController.setTransitionListener(afterAnimationNavigateTo());
+                motionController.transitionToEnd();
             }
             return true;
         };
     }
 
-    private MotionLayout.TransitionListener afterAnimationNavigateTo(@IdRes int actionId) {
+    private MotionLayout.TransitionListener afterAnimationNavigateTo() {
         return new MotionLayout.TransitionListener() {
             @Override
             public void onTransitionStarted(MotionLayout motionLayout, int i, int i1) {
@@ -59,7 +57,7 @@ public class MainFragment extends Fragment {
 
             @Override
             public void onTransitionCompleted(MotionLayout motionLayout, int i) {
-                Navigation.findNavController(motionLayout).navigate(actionId);
+                Navigation.findNavController(motionLayout).navigate(R.id.mainFragment_to_gameModeFragment);
             }
 
             @Override

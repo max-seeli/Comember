@@ -9,7 +9,7 @@ public enum GameMode {
     NOREPEAT(2);
 
     private final int value;
-    private static final Map map = new HashMap<>();
+    private static final Map<Integer, GameMode> map = new HashMap<>();
 
     GameMode(int value) {
         this.value = value;
@@ -21,8 +21,8 @@ public enum GameMode {
         }
     }
 
-    public static GameStatus valueOf(int colorType) {
-        return (GameStatus) map.get(colorType);
+    public static GameMode valueOf(int colorType) {
+        return (GameMode) map.get(colorType);
     }
 
     public int getValue() {

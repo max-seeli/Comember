@@ -32,6 +32,7 @@
     <style name="highscore_text">
         <item name="android:textSize">176sp</item>
         <item name="android:textColor">@android:color/white</item>
+        <item name="progressColor">@color/dark_grey</item>
         <item name="android:textStyle">bold</item>
         <item name="fontWeight">800</item>
     </style>

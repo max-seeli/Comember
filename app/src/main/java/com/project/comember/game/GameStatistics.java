@@ -2,7 +2,11 @@ package com.project.comember.game;
 
 import android.content.Context;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 
 public class GameStatistics {
 
@@ -16,8 +20,9 @@ public class GameStatistics {
         LAST_SCORE(2),
         NUMBER_GAMES(3);
 
-        private int value;
-        private ValueType(int value) {
+        private final int value;
+
+        ValueType(int value) {
             this.value = value;
         }
 
@@ -33,15 +38,11 @@ public class GameStatistics {
 
     public static float getAverageScore(Context context, GameMode gameMode) {
         float avgValue = getValue(context, gameMode, ValueType.AVERAGE_SCORE);
-        return (float)(Math.round(avgValue * 100.0) / 100.0);
+        return (float) (Math.round(avgValue * 100.0) / 100.0);
     }
 
     public static int getLastScore(Context context, GameMode gameMode) {
         return (int) getValue(context, gameMode, ValueType.LAST_SCORE);
-    }
-
-    public static int getNumberGamesPlayed(Context context, GameMode gameMode) {
-        return (int) getValue(context, gameMode, ValueType.NUMBER_GAMES);
     }
 
     public static void setNewScore(Context context, GameMode gameMode, int score) {
@@ -116,7 +117,7 @@ public class GameStatistics {
             InputStream inputStream = context.openFileInput(filename);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-            String line = null;
+            String line;
             while ((line = bufferedReader.readLine()) != null)
                 content.append(line).append("\n");
             inputStream.close();

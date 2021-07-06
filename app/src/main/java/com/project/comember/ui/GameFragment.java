@@ -32,10 +32,13 @@ public class GameFragment extends Fragment {
     private GameEngine gameEngine;
 
     private GameLayout gameLayout;
-    private GameScoreCounter gameScoreCounter;
     private GameButton[] gameButtons;
+    private GameScoreCounter gameScoreCounter;
 
     private ExecutorService executor;
+
+    protected boolean gameLost = false;
+
 
     @Nullable
     @Override
@@ -52,23 +55,18 @@ public class GameFragment extends Fragment {
         ClickableGroup clickToStartGroup = view.findViewById(R.id.click_to_start_group);
         clickToStartGroup.setOnClickListener(clickedView -> {
             clickToStartGroup.setVisibility(View.INVISIBLE);
-            startGame();
+            gameEngine.start();
         });
-
-        gameScoreCounter = view.findViewById(R.id.game_score_counter);
 
         gameLayout = view.findViewById(R.id.game_button_layout);
         gameButtons = gameLayout.getGameButtons();
+        gameScoreCounter = view.findViewById(R.id.game_score_counter);
 
         initializeGameButtons();
     }
 
     protected GameEngine getGameEngine(GameFragment gameController) {
         return new GameEngine(gameController);
-    }
-
-    protected void startGame() {
-        gameEngine.start();
     }
 
     private void initializeGameButtons() {
@@ -81,8 +79,11 @@ public class GameFragment extends Fragment {
     }
 
     public void highlightColorSequence(List<GameColor> gameColorSequence, int highlightMillis, int highlightPauseMillis) {
-        Future<?> waitForExecution = null;
+        //This check is needed for games canceled via back button
+        if (gameLost)
+            return;
 
+        Future<?> waitForExecution = null;
         executor = Executors.newSingleThreadExecutor();
         for (GameColor gameColor : gameColorSequence) {
             waitForExecution = executor.submit(new HighlightButtonRunnable(
@@ -105,15 +106,17 @@ public class GameFragment extends Fragment {
         }
     }
 
-    public void setClickableTimePercentRemaining(int percentRemaining) {
+    public void setClickable(boolean clickable) {
+        gameLayout.setTouchable(clickable);
+    }
+
+    public void setGameTimer(int percentRemaining) {
         gameScoreCounter.setProgress(100 - percentRemaining);
     }
 
     public void incrementGameScore() {
         gameScoreCounter.increment();
     }
-
-    private boolean gameLost = false;
 
     public void gameLost(int gameScore) {
         if (gameLost) return;
@@ -127,14 +130,11 @@ public class GameFragment extends Fragment {
         Navigation.findNavController(getView()).navigate(action);
     }
 
-    public void setClickable(boolean clickable) {
-        gameLayout.setTouchable(clickable);
-    }
-
     @Override
     public void onDetach() {
         super.onDetach();
         if (executor != null)
             executor.shutdownNow();
+        gameLost = true;
     }
 }

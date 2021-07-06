@@ -95,40 +95,28 @@ public class GameButton extends View {
 
     public void highlight() {
         GameSoundPlayer.playSoundColor(getContext(), getGameColor());
-        changeActiveColor(mHighlightColor, false);
+        changeActiveColor(mHighlightColor);
         changeStrokeSize(HIGHLIGHT_STROKE_SIZE);
     }
 
     public void unhighlight() {
-        changeActiveColor(mMainColor, false);
+        changeActiveColor(mMainColor);
         changeStrokeSize(STANDARD_STROKE_SIZE);
     }
 
     private void changeActiveColor(Paint color) {
-        changeActiveColor(color, true);
-    }
-
-    private void changeActiveColor(Paint color, boolean inval) {
         mCircleColor = color;
-        if (inval)
-            invalidate();
     }
 
     private void changeStrokeSize(int strokeSize) {
-        ((Activity) getContext()).runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ValueAnimator strokeAnimator = ValueAnimator.ofInt(mStrokeSize, strokeSize);
-                strokeAnimator.setDuration(100);
-                strokeAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        mStrokeSize = (int) animation.getAnimatedValue();
-                        postInvalidate();
-                    }
-                });
-                strokeAnimator.start();
-            }
+        ((Activity) getContext()).runOnUiThread(() -> {
+            ValueAnimator strokeAnimator = ValueAnimator.ofInt(mStrokeSize, strokeSize);
+            strokeAnimator.setDuration(100);
+            strokeAnimator.addUpdateListener(animation -> {
+                mStrokeSize = (int) animation.getAnimatedValue();
+                postInvalidate();
+            });
+            strokeAnimator.start();
         });
     }
 

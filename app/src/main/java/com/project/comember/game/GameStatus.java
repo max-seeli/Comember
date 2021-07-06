@@ -10,7 +10,7 @@ public enum GameStatus {
     OVER(3);
 
     private final int value;
-    private static final Map map = new HashMap<>();
+    private static final Map<Integer, GameStatus> map = new HashMap<>();
 
     GameStatus(int value) {
         this.value = value;

@@ -17,6 +17,9 @@ public class NoRepeatGameFragment extends GameFragment {
 
     @Override
     public void gameLost(int gameScore) {
+        if (gameLost) return;
+        gameLost = true;
+
         GameStatistics.setNewScore(getContext(), GameMode.NOREPEAT, gameScore);
 
         NoRepeatGameFragmentDirections.NoRepeatGameFragmentToGameOverFragment action = NoRepeatGameFragmentDirections.noRepeatGameFragmentToGameOverFragment();

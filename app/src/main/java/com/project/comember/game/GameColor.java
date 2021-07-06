@@ -11,8 +11,8 @@ public enum GameColor {
     YELLOW(2),
     GREEN(3);
 
-    private int value;
-    private static Map map = new HashMap<>();
+    private final int value;
+    private static final Map<Integer, GameColor> map = new HashMap<>();
 
     GameColor(int value) {
         this.value = value;

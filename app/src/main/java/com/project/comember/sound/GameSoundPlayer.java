@@ -2,20 +2,17 @@ package com.project.comember.sound;
 
 import android.content.Context;
 import android.media.AudioAttributes;
-import android.media.AudioManager;
 import android.media.SoundPool;
 
 import com.project.comember.R;
 import com.project.comember.game.GameColor;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class GameSoundPlayer {
 
     private static SoundPool soundPool;
     private static HashMap<Object, Integer> soundPoolMap;
-
 
 
     public static void initSounds(Context context) {
@@ -32,7 +29,7 @@ public class GameSoundPlayer {
                 .setAudioAttributes(audioAttributes)
                 .build();
 
-        soundPoolMap = new HashMap(4);
+        soundPoolMap = new HashMap<>(4);
 
         soundPoolMap.put(GameColor.BLUE, soundPool.load(context, R.raw.low, 1));
         soundPoolMap.put(GameColor.YELLOW, soundPool.load(context, R.raw.medium, 1));

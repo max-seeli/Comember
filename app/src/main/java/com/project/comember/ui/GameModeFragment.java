@@ -2,15 +2,14 @@ package com.project.comember.ui;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.project.comember.R;
 import com.project.comember.game.GameMode;
@@ -44,8 +43,8 @@ public class GameModeFragment extends Fragment {
 
     private List<GameModeInfo> getGameModeList() {
         Context context = getContext();
-        
-        List<GameModeInfo> gameModeInfoList = new ArrayList<>();        
+
+        List<GameModeInfo> gameModeInfoList = new ArrayList<>();
         gameModeInfoList.add(
                 new GameModeInfo(
                         R.drawable.ic_game_button,

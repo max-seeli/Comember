@@ -1,5 +1,6 @@
 package com.project.comember.misc;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +19,8 @@ import java.util.List;
 
 public class GameModeAdapter extends PagerAdapter {
 
-    private List<GameModeInfo> gameModeInfoList;
-    private Context context;
+    private final List<GameModeInfo> gameModeInfoList;
+    private final Context context;
 
     public GameModeAdapter(List<GameModeInfo> gameModeInfoList, Context context) {
         this.gameModeInfoList = gameModeInfoList;
@@ -36,6 +37,7 @@ public class GameModeAdapter extends PagerAdapter {
         return view.equals(object);
     }
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
@@ -59,12 +61,7 @@ public class GameModeAdapter extends PagerAdapter {
         cardAvgScore.setText(Float.toString(gameModeInfo.getAvgScore()));
         cardLastScore.setText(Integer.toString(gameModeInfo.getLastScore()));
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(container).navigate(gameModeInfo.getActionId());
-            }
-        });
+        view.setOnClickListener(v -> Navigation.findNavController(container).navigate(gameModeInfo.getActionId()));
 
         container.addView(view, 0);
 
@@ -73,6 +70,6 @@ public class GameModeAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((View)object);
+        container.removeView((View) object);
     }
 }

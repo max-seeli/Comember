@@ -5,4 +5,7 @@
         <attr name="highlightColor" format="color"/>
         <attr name="borderColor" format="color"/>
     </declare-styleable>
+    <declare-styleable name="GameScoreCounter">
+        <attr name="progressColor" format="color"/>
+    </declare-styleable>
 </resources>

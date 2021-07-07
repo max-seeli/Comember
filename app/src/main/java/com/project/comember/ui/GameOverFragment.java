@@ -43,6 +43,13 @@ public class GameOverFragment extends Fragment {
         playAgainButton.setOnTouchListener(onTouchAfterAnimationNavigateTo(playAgainId));
         mainMenuButton.setOnTouchListener(onTouchAfterAnimationNavigateTo(R.id.gameOverFragment_to_mainFragment));
 
+
+        showAd();
+
+    }
+
+    private void showAd() {
+        ((MainActivity)getActivity()).showAd();
     }
 
     private View.OnTouchListener onTouchAfterAnimationNavigateTo(@IdRes int actionId) {

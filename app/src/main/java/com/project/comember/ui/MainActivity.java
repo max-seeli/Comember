@@ -24,12 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
-                loadNewInterstitialAdd();
-            }
-        });
+        MobileAds.initialize(this, initializationStatus -> loadNewInterstitialAdd());
 
     }
 

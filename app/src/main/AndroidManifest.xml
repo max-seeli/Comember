@@ -11,8 +11,10 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-2159541678943035~9823016874"/>
-        <activity android:name=".ui.MainActivity">
+            android:value="ca-app-pub-2159541678943035~9823016874" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

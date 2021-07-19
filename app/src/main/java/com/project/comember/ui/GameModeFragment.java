@@ -36,7 +36,6 @@ public class GameModeFragment extends Fragment {
 
         ViewPager viewPager = view.findViewById(R.id.view_pager);
         viewPager.setAdapter(adapter);
-        viewPager.setPadding(130, 0, 130, 0);
 
 
     }

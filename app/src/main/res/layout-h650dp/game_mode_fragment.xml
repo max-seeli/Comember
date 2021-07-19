@@ -18,7 +18,7 @@
         android:paddingHorizontal="100dp"
 
         android:paddingVertical="50dp"
-        android:text="Pick  Mode"
+        android:text="Pick a Mode"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/view_pager"
         app:layout_constraintEnd_toEndOf="parent"
